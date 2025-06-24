@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -18,11 +19,13 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.mockito.BDDMockito.given;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 /**
  * Tests from Greeting Controller. If the Hello World Message is working.
  */
+@AutoConfigureRestDocs(outputDir = "target/generated-snippets")
 @WebMvcTest(GreetingController.class)
 @AutoConfigureMockMvc(addFilters = false)
 @ExtendWith(MockitoExtension.class)
@@ -69,8 +72,9 @@ public class GreetingControllerTests {
         // act
         ResultActions response = mockMvc.perform(get("/hello"));
         //assert
-        response.andExpect(MockMvcResultMatchers.status().isOk());
-        response.andExpect(MockMvcResultMatchers.content()
-                .json(objectMapper.writeValueAsString(message)));
+        response.andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content()
+                        .json(objectMapper.writeValueAsString(message)))
+                .andDo(document("hello"));
     }
 }

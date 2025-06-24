@@ -19,9 +19,14 @@ Neste projeto terei como foco, alem da aplicação de novas ferramentas, utiliza
 ## 📋 Roteiro
 
 - [x] Modelo Entidade-Relacionamento;
+- [x] Ambiente BackEnd Java;
+- [x] Ambiente FrontEnd Angular;
+- [ ] Criação de Usuários;
+- [ ] Tela de Usuários no Front;
+- [ ] Comunicação via JWT;
+- [ ] Prevenção contra Ataque de Força Bruta;
 - [ ] Docker File;
 - [ ] Docker Compose;
-- [ ] Criação de Usuários;
 - [ ] Geração de Documentação.
 
 ## 🔔 Status do Projeto
