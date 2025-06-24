@@ -1,0 +1,26 @@
+services:
+  server:
+    build: .
+    ports:
+      - '8080:8080'
+    networks:
+      - default
+  postgres:
+    image: 'postgres:latest'
+    environment:
+      - 'POSTGRES_DB=javagas'
+      - 'POSTGRES_PASSWORD=secret'
+      - 'POSTGRES_USER=api'
+    ports:
+      - '5432:5432'
+    networks:
+      - default
+    volumes:
+      - pg-db-data:/var/lib/postgresql/data
+
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  pg-db-data:
