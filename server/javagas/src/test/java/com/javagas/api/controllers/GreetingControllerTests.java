@@ -1,80 +1,76 @@
 package com.javagas.api.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.javagas.api.dto.Message;
+import com.javagas.api.dto.MessageResponse;
 import com.javagas.api.services.MessageService;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-import static org.mockito.BDDMockito.given;
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import org.mockito.BDDMockito;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * Tests from Greeting Controller. If the Hello World Message is working.
+ *
+ * @since 0.1
  */
-@AutoConfigureRestDocs(outputDir = "target/generated-snippets")
-@WebMvcTest(GreetingController.class)
-@AutoConfigureMockMvc(addFilters = false)
-@ExtendWith(MockitoExtension.class)
+@ExtendWith(SpringExtension.class)
 public class GreetingControllerTests {
-
-    /**
-     * This library will send the requests.
-     */
-    @Autowired
-    private MockMvc mockMvc;
     /**
      * The service that create a Message Object.
+     *
+     * @since 0.1
      */
-    @MockitoBean
-    private MessageService messageService;
+    @Mock
+    private MessageService service;
     /**
-     * The class that will convert an object to a JSON string.
+     * The controller that will handle the "/hello" route.
+     *
+     * @since 0.2
      */
-    @Autowired
-    private ObjectMapper objectMapper;
+    @InjectMocks
+    private GreetingController controller;
     /**
-     * The Message Object used in the tests.
+     * The Message Object that will be returned by the service.
+     *
+     * @since 0.2
      */
-    private Message message;
+    private MessageResponse dto;
 
     /**
      * Method that will run before each test to create a Message Object.
+     *
+     * @since 0.2
      */
     @BeforeEach
     public void setup() {
-        message = new Message("Hello World");
+        dto = new MessageResponse("Hello World");
+        BDDMockito.when(service.createMessage(ArgumentMatchers.anyString()))
+                .thenReturn(dto);
     }
 
     /**
      * Test if the "/hello" route will return "Hello World".
+     *
+     * @since 0.1
      */
     @Test
-    @DisplayName("If Greeting Controller"
+    @DisplayName("Testing if Greeting Controller hello route"
             + "have \"Hello World\" Message in Response")
     public void helloWillReturnAMessage() throws Exception {
-        // arrange
-        given(messageService.createMessage(ArgumentMatchers.any()))
-                .willReturn(message);
-        // act
-        ResultActions response = mockMvc.perform(get("/hello"));
+        ResponseEntity<MessageResponse> response = controller.hello();
+        MessageResponse body = response.getBody();
         //assert
-        response.andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content()
-                        .json(objectMapper.writeValueAsString(message)))
-                .andDo(document("hello"));
+        Assertions.assertThat(response.getStatusCode())
+                .isEqualTo(HttpStatus.OK);
+        Assertions.assertThat(body).isNotNull();
+        Assertions.assertThat(body.getMessage())
+                .isEqualTo(dto.getMessage());
     }
 }
