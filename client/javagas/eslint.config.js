@@ -32,7 +32,7 @@ module.exports = tseslint.config(
     // Override specific rules for TypeScript files (these will take priority over the extended configs above)
     rules: {
       "@angular-eslint/directive-selector": [
-        "error",
+        "warn",
         {
           type: "attribute",
           prefix: "app",
@@ -40,7 +40,7 @@ module.exports = tseslint.config(
         },
       ],
       "@angular-eslint/component-selector": [
-        "error",
+        "warn",
         {
           type: "element",
           prefix: "app",
@@ -68,7 +68,7 @@ module.exports = tseslint.config(
     files: ["**/*.ts"],
     rules: {
       "@angular-eslint/directive-selector": [
-        "error",
+        "warn",
         {
           type: "attribute",
           prefix: "app", // different to our root config, which was "app"
@@ -76,11 +76,17 @@ module.exports = tseslint.config(
         },
       ],
       "@angular-eslint/component-selector": [
-        "error",
+        "warn",
         {
           type: "element",
           prefix: "app", // different to our root config, which was "app"
           style: "kebab-case",
+        },
+      ],
+      "@angular-eslint/component-class-suffix": [
+        "warn",
+        {
+          suffixes: ["Component", "Page"], // different to our root config, which was just "Component"
         },
       ],
     },

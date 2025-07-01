@@ -103,16 +103,16 @@ public class SecurityConfig {
      * <p>
      *     TODO: Implement CSRF Token.
      * </p>
+     * <ul>
+     *     <li><strong>CSRF token</strong> is disabled</li>
+     *     <li><strong>Only Authorized</strong> Requests</li>
+     *     <li><strong>Form Login</strong> is disabled.</li>
+     *     <li><strong>Http Basic</strong> is the default</li>
+     * </ul>
      *
      * @param http The security chain builder.
      * @return A Security Chain that allows only authorized http requests.
      * @throws Exception A Builder exception.
-     * @summary <ul>
-     * <li><strong>CSRF token</strong> is disabled</li>
-     * <li><strong>Only Authorized</strong> Requests</li>
-     * <li><strong>Form Login</strong> is disabled.</li>
-     * <li><strong>Http Basic</strong> is the default</li>
-     * </ul>
      * @hidden In future updates CSRF token will be enabled and new routes
      * @since 0.2
      */
@@ -124,6 +124,10 @@ public class SecurityConfig {
                         authorize.requestMatchers(
                                         "/api/auth/**",
                                         "/api/greeting/**",
+                                        "/actuator/**",
+                                        "/swagger-ui/**",
+                                        "/swagger-resources/*",
+                                        "/api/docs/**",
                                         "/error").permitAll()
                                 .anyRequest().authenticated())
                 .formLogin(AbstractHttpConfigurer::disable)

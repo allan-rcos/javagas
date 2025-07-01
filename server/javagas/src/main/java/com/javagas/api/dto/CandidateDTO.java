@@ -5,7 +5,6 @@ import lombok.*;
 import org.springframework.stereotype.Component;
 
 /**
- * {@inheritDoc}
  * The Candidate Data Transfer Object.
  *
  * @see com.javagas.api.models.Candidate

@@ -21,12 +21,12 @@ Neste projeto terei como foco, alem da aplicação de novas ferramentas, utiliza
 - [x] Modelo Entidade-Relacionamento;
 - [x] Ambiente BackEnd Java;
 - [x] Ambiente FrontEnd Angular;
-- [ ] Criação de Usuários;
+- [x] Criação de Usuários;
+- [x] Comunicação via JWT;
+- [x] Docker File;
+- [x] Docker Compose;
 - [ ] Tela de Usuários no Front;
-- [ ] Comunicação via JWT;
 - [ ] Prevenção contra Ataque de Força Bruta;
-- [ ] Docker File;
-- [ ] Docker Compose;
 - [ ] Geração de Documentação.
 
 ## 🔔 Status do Projeto

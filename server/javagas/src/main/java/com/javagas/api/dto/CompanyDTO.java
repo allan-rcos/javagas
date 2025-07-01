@@ -5,7 +5,6 @@ import lombok.*;
 import org.springframework.stereotype.Component;
 
 /**
- * {@inheritDoc}
  * The Company Data Transfer Object.
  *
  * @see com.javagas.api.models.Company

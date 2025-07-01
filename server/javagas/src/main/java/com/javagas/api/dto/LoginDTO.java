@@ -2,6 +2,7 @@ package com.javagas.api.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class LoginDTO {
      * @since 0.2
      */
     @NotBlank
+    @Size(min = 6, max = 32)
     private String username;
     /**
      * The Password used in Login.

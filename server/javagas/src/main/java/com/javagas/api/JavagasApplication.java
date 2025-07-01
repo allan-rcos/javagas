@@ -2,7 +2,6 @@ package com.javagas.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
  * The main application.
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
  * @since 0.1
  */
 @SpringBootApplication
-@CrossOrigin("localhost:3000")
 public class JavagasApplication {
 
     protected JavagasApplication() {

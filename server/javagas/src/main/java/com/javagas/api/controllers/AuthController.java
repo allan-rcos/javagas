@@ -5,6 +5,12 @@ import com.javagas.api.security.JWTGenerator;
 import com.javagas.api.services.CandidateService;
 import com.javagas.api.services.CompanyService;
 import com.javagas.api.utils.Industry;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +28,8 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @since 0.2
  */
+@Tag(name = "Authentication",
+        description = "Routes to Register Users and Login")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -81,9 +89,30 @@ public class AuthController {
      * @return OK
      * @since 0.2
      */
+    @Operation(
+            summary = "Register a new Candidate",
+            description = "This route registers a new candidate in the system."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Candidate registered successfully"),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Bad Request - Invalid Candidate Data")
+    })
     @PostMapping("candidate/register")
     public ResponseEntity<MessageResponse> registerCandidate(
-            @Valid @RequestBody final CandidateDTO candidate
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "Candidate User Data",
+                    required = true,
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(
+                                    implementation = CandidateDTO.class
+                            )
+                    )
+            ) @Valid @RequestBody final CandidateDTO candidate
     ) {
         candidateService.createCandidate(candidate);
 
@@ -99,9 +128,31 @@ public class AuthController {
      * @return Bad Request (Industry Not Found) or Ok.
      * @since 0.2
      */
+    @Operation(
+            summary = "Register a new Company",
+            description = "This route registers a new company in the system."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Company registered successfully"),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Bad Request - Industry Not Found or "
+                            + "invalid Company Data")
+    })
     @PostMapping("company/register")
     public ResponseEntity<MessageResponse> registerCompany(
-            @Valid @RequestBody final CompanyDTO company
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "Company User Data",
+                    required = true,
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(
+                                    implementation = CompanyDTO.class
+                            )
+                    )
+            ) @Valid @RequestBody final CompanyDTO company
     ) {
         if (!Industry.exists(company.getIndustry())) {
             return ResponseEntity.badRequest().body(
@@ -121,9 +172,31 @@ public class AuthController {
      * OK with token in Details.
      * @since 0.2
      */
+    @Operation(
+            summary = "Login User",
+            description = "This route logs in a user and returns a JWT token."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "User logged in successfully and return a "
+                            + "JWT token"),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Unauthorized - Invalid Username or Password")
+    })
     @PostMapping("login")
     public ResponseEntity<TokenResponse> login(
-            @Valid @RequestBody final LoginDTO user) {
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "User Login Data",
+                    required = true,
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(
+                                    implementation = LoginDTO.class
+                            )
+                    )
+            ) @Valid @RequestBody final LoginDTO user) {
 
         Authentication authentication = manager
                 .authenticate(new UsernamePasswordAuthenticationToken(

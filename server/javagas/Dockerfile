@@ -1,7 +1,7 @@
-FROM openjdk:24-jdk
-MAINTAINER "Ricardo Állan Costa"
+FROM gcr.io/distroless/java21-debian12
 LABEL authors="Állan"
 
-ADD target/javagas-server.jar javagas-server.jar
+EXPOSE 8080
+COPY target/javagas-server.jar javagas-server.jar
 
 ENTRYPOINT ["java", "-jar", "/javagas-server.jar"]

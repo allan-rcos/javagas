@@ -61,7 +61,6 @@ public class JWTAuthFilter extends OncePerRequestFilter {
     }
 
     /**
-     * {@inheritDoc}
      * Filter application method.
      * <p>
      * This method was called to filter JWT tokens and Authenticate the

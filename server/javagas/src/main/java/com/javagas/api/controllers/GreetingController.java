@@ -2,6 +2,10 @@ package com.javagas.api.controllers;
 
 import com.javagas.api.dto.MessageResponse;
 import com.javagas.api.services.MessageService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @since 0.1
  */
+@Tag(name = "Greeting",
+        description = "Routes that return a Hello World message")
 @RestController
 @RequestMapping("/api/greeting")
 public class GreetingController {
@@ -37,6 +43,16 @@ public class GreetingController {
      *
      * @return A "Hello World" message.
      */
+    @Operation(
+            summary = "Hello World",
+            description = "Returns a Hello World message"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Returns a Hello World message"
+            )
+    })
     @GetMapping("/hello")
     public ResponseEntity<MessageResponse> hello() {
         return ResponseEntity.ok(messageService.createMessage("Hello World"));

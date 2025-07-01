@@ -35,7 +35,7 @@ public enum Industry {
      * <p>
      * Organizations involved in medical services, pharmaceuticals,
      * biotechnology, medical devices, and healthcare providers.
-     * Examples: Johnson & Johnson, Pfizer, UnitedHealth Group.
+     * Examples: Johnson &#38; Johnson, Pfizer, UnitedHealth Group.
      * </p>
      *
      * @since 0.2
@@ -109,7 +109,7 @@ public enum Industry {
      * <p>
      * Businesses in the service industry focused on leisure and guest services,
      * including hotels, restaurants, tourism, and entertainment venues.
-     * Examples: Marriott, McDonald's, Disney (Parks & Resorts).
+     * Examples: Marriott, McDonald's, Disney (Parks &#38; Resorts).
      * </p>
      *
      * @since 0.2
@@ -173,7 +173,7 @@ public enum Industry {
      * <p>
      * Firms offering expert advice and services to businesses
      * across various domains like management, IT, strategy, and HR.
-     * Examples: McKinsey & Company, Accenture, Deloitte.
+     * Examples: McKinsey &#38; Company, Accenture, Deloitte.
      * </p>
      */
     CONSULTING,

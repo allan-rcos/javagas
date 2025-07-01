@@ -14,12 +14,12 @@ import lombok.NoArgsConstructor;
  * this entity inherits the User Class and complement with Candidate Only
  * Fields.Have a {@link com.javagas.api.utils.CandidateAuthority
  * Candidate Authority} And can:
+ * </p>
  * <ul>
  *     <li>Apply to Jobs;</li>
  *     <li>Have Skills;</li>
  *     <li>See Jobs all.</li>
  * </ul>
- * </p>
  *
  * @see User Main User
  * @see Company Company Only Fields

@@ -98,7 +98,7 @@ public class SecurityUser implements
     }
 
     /**
-     * {@inheritDoc}
+     *
      */
     @Override
     public boolean isCredentialsNonExpired() {
