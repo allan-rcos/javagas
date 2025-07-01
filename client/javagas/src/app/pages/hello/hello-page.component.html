@@ -1,15 +1,29 @@
-<nav aria-label="breadcrumbs" class="breadcrumb is-centered">
-  <ul>
-    <li><a routerLink="">JaVagas</a></li>
-    <li class="is-active"><a aria-current="page" routerLinkActive="hello">Greetings</a>
-    </li>
-  </ul>
-</nav>
-@if (errorMessage) {
-  <div class="notification">
-    <button class="delete"></button>
-    {{ errorMessage }}
+<app-default-layout>
+  <nav aria-label="breadcrumbs"
+       class="breadcrumb">
+    <ul>
+      <li>
+        <a routerLink="">
+          JaVagas
+        </a>
+      </li>
+      <li class="is-active">
+        <a aria-current="page" routerLinkActive="hello">
+          Greetings
+        </a>
+      </li>
+    </ul>
+
+  </nav>
+  @if (errorMessage) {
+    <div class="notification">
+      <button class="delete"></button>
+      {{ errorMessage }}
+    </div>
+  }
+  <div class="section">
+    <h1 class="title"> {{ greeting }} </h1>
+    <h2 class="subtitle">This is a Hello World page!</h2>
   </div>
-}
-<h1 class="title"> {{ greeting }} </h1>
-<h2 class="subtitle">This is a Hello World page!</h2>
+
+</app-default-layout>

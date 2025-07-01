@@ -11,7 +11,7 @@
     </parent>
     <groupId>io.github.allan-rcos</groupId>
     <artifactId>javagas-server</artifactId>
-    <version>0.0.2</version>
+    <version>0.2.1</version>
     <name>javagas</name>
     <description>
         A Server for the JaVagas project, which is a Java-based

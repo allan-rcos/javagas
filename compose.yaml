@@ -8,7 +8,7 @@ x-spring-database-variables: &spring-db-variables
   SPRING_DATASOURCE_PASSWORD: secret
 services:
   client:
-    image: rickallan/javagas-client:v0.1
+    image: rickallan/javagas-client:latest
     container_name: "javagas-client"
     ports:
       - '80:80'
@@ -17,7 +17,7 @@ services:
       - default
     mem_limit: 256m
   server:
-    image: rickallan/javagas-server:v0.2.1
+    image: rickallan/javagas-server:latest
     container_name: "javagas-server"
     ports:
       - '8080:8080'

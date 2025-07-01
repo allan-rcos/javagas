@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * The main application.
  *
+ * @version 0.2.1
  * @since 0.1
  */
 @SpringBootApplication

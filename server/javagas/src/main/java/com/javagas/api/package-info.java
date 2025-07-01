@@ -7,7 +7,7 @@
  * </p>
  *
  * @author Ricardo Állan Costa
- * @version 0.2
+ * @version 0.2.1
  * @since 0.1
  */
 package com.javagas.api;

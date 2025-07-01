@@ -8,7 +8,7 @@ x-spring-database-variables: &spring-db-variables
   SPRING_DATASOURCE_PASSWORD: secret
 services:
   server:
-    image: rickallan/javagas-server:v0.2
+    image: rickallan/javagas-server:latest
     container_name: "javagas-server"
     ports:
       - '8080:8080'

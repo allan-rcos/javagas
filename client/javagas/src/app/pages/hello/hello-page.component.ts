@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { HelloService } from '../../services/greetings/hello.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { DefaultLayoutComponent } from '../../components/layouts/default-layout/default-layout.component';
 
 /**
  * Component to display a greeting message.
@@ -12,7 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http';
  */
 @Component({
   selector: 'app-hello',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, DefaultLayoutComponent],
   providers: [HelloService],
   templateUrl: './hello-page.component.html',
 })

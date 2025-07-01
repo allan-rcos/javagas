@@ -3,7 +3,7 @@
  * It includes settings for security, database connections, and other
  * application-level configurations.
  *
- * @version 0.2
- * @since 0.2
+ * @version 0.2.1
+ * @since 0.2.1
  */
 package com.javagas.api.config;
