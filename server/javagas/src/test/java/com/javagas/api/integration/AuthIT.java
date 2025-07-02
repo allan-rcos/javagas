@@ -54,18 +54,61 @@ class AuthIT {
      * @since 0.2
      */
     private final LoginDTO loginDTO = DTOFactory.createLogin();
+    /**
+     * A User to be used in the tests.
+     *
+     * @see com.javagas.api.models.User
+     * @since 0.2
+     */
     private final User user = ModelFactory.createUserCandidate();
+    /**
+     * A TestRestTemplate to be used in the tests to made requests.
+     *
+     * @since 0.2
+     */
     @Autowired
     @Qualifier("guestClient")
     private TestRestTemplate guest;
+    /**
+     * User Repository to be used in the tests to access the database.
+     * Create Users to allow tokens to be generated and validated.
+     * Retrieve Users to check if they were created successfully.
+     *
+     * @since 0.2
+     */
     @Autowired
     private UserRepo userRepo;
+    /**
+     * Company Repository to be used in the tests to access the database.
+     * Retrieve Users to check if they were created successfully.
+     *
+     * @since 0.2
+     */
     @Autowired
     private CompanyRepo companyRepo;
+    /**
+     * Candidate Repository to be used in the tests to access the database.
+     * Retrieve Users to check if they were created successfully.
+     *
+     * @since 0.2
+     */
     @Autowired
     private CandidateRepo candidateRepo;
+    /**
+     * A JWT Generator to be used in the tests to generate and validate tokens.
+     * It is used to validate the token generated after a successful login.
+     *
+     * @since 0.2
+     */
     @Autowired
     private JWTGenerator jwtGenerator;
+    /**
+     * A Password Encoder to be used in the tests to encode passwords.
+     * It is used to encode the password of the user before saving it to
+     * the database.
+     *
+     * @since 0.2
+     */
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -78,7 +121,7 @@ class AuthIT {
     @DisplayName("Register Candidate Will Return Ok Response Successfully")
     void registerCandidateWillReturnOkResponseSuccessfully() {
         var response = guest.exchange(
-                "/api/auth/candidate/register",
+                "/auth/candidate/register",
                 HttpMethod.POST,
                 new HttpEntity<>(candidateDTO),
                 Object.class
@@ -109,7 +152,7 @@ class AuthIT {
     @DisplayName("Register Company Will Return Ok Response Successfully")
     void registerCompanyWillReturnOkResponseSuccessfully() {
         var response = guest.postForEntity(
-                "/api/auth/company/register",
+                "/auth/company/register",
                 companyDTO,
                 MessageResponse.class
         );
@@ -143,7 +186,7 @@ class AuthIT {
         String invalidIndustry = "Software Development";
         dto.setIndustry(invalidIndustry);
         var response = guest.postForEntity(
-                "/api/auth/company/register",
+                "/auth/company/register",
                 dto,
                 MessageResponse.class
         );
@@ -170,7 +213,7 @@ class AuthIT {
     void loginAuthenticateAndReturnSuccessfully() {
         userRepo.save(user);
         var response = guest.postForEntity(
-                "/api/auth/login",
+                "/auth/login",
                 loginDTO,
                 TokenResponse.class
         );
@@ -197,7 +240,7 @@ class AuthIT {
             + "Unauthorized Response")
     void loginNotAuthenticateAndReturnUnAuthorized() {
         var response = guest.postForEntity(
-                "/api/auth/login",
+                "/auth/login",
                 loginDTO,
                 TokenResponse.class
         );
@@ -216,7 +259,7 @@ class AuthIT {
         public TestRestTemplate testRestTemplateGuest(
                 @Value("${local.server.port}") final int port) {
             RestTemplateBuilder restTemplateBuilder = new RestTemplateBuilder()
-                    .rootUri("http://localhost:" + port);
+                    .rootUri("http://localhost:" + port + "/api/v1");
             return new TestRestTemplate(restTemplateBuilder);
         }
     }

@@ -23,6 +23,12 @@ import org.springframework.http.ResponseEntity;
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class GreetingIT {
+    /**
+     * The TestRestTemplate used to make requests to the API.
+     * This is a guest client that does not require authentication.
+     *
+     * @since 0.2
+     */
     @Autowired
     @Qualifier("guestClient")
     private TestRestTemplate guest;
@@ -45,14 +51,29 @@ public class GreetingIT {
         Assertions.assertThat(body).isNotNull();
     }
 
+    /**
+     * Configuration class for the integration tests.
+     * This class provides a TestRestTemplate bean that can be used to make
+     * requests.
+     *
+     * @since 0.2
+     */
     @TestConfiguration
     @Lazy
     static class Config {
+        /**
+         * Creates a TestRestTemplate bean for guest users.
+         * This bean is used to make requests to the API without authentication.
+         *
+         * @param port The port on which the application is running.
+         * @return A TestRestTemplate configured for guest access.
+         * @since 0.2
+         */
         @Bean(name = "guestClient")
         public TestRestTemplate testRestTemplateGuest(
                 @Value("${local.server.port}") final int port) {
             RestTemplateBuilder restTemplateBuilder = new RestTemplateBuilder()
-                    .rootUri("http://localhost:" + port + "/api");
+                    .rootUri("http://localhost:" + port + "/api/v1");
             return new TestRestTemplate(restTemplateBuilder);
         }
     }

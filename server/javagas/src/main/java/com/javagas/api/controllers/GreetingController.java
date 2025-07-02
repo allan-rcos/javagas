@@ -18,8 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Tag(name = "Greeting",
         description = "Routes that return a Hello World message")
+@Tag(name = "V1", description = "Version 1 of the API")
 @RestController
-@RequestMapping("/api/greeting")
+@RequestMapping("/api/v1/greeting")
 public class GreetingController {
     /**
      * The service that will create the Message Object.

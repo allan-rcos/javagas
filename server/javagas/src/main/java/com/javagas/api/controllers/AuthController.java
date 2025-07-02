@@ -30,8 +30,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Tag(name = "Authentication",
         description = "Routes to Register Users and Login")
+@Tag(name = "V1", description = "Version 1 of the API")
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/v1/auth")
 public class AuthController {
     /**
      * Used to Register new Company Users.

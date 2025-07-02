@@ -122,8 +122,9 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize ->
                         authorize.requestMatchers(
-                                        "/api/auth/**",
-                                        "/api/greeting/**",
+                                        "/api/v1/auth/**",
+                                        "/api/v1/greeting/**",
+                                        "/api/v1/enums/**",
                                         "/actuator/**",
                                         "/swagger-ui/**",
                                         "/swagger-resources/*",

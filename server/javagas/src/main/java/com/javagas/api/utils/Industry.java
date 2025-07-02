@@ -3,6 +3,7 @@ package com.javagas.api.utils;
 /**
  * Represents various industry sectors a company might operate within.
  *
+ * @version 0.2.2
  * @since 0.2
  */
 public enum Industry {
@@ -201,5 +202,20 @@ public enum Industry {
         } catch (final IllegalArgumentException e) {
             return false;
         }
+    }
+
+    /**
+     * Converts the enum values to an array of strings.
+     *
+     * @return An array of strings representing the names of the enum constants.
+     * @since 0.2.2
+     */
+    public static String[] toArray() {
+        Industry[] values = Industry.values();
+        String[] industries = new String[values.length];
+        for (int i = 0; i < values.length; i++) {
+            industries[i] = values[i].name();
+        }
+        return industries;
     }
 }
