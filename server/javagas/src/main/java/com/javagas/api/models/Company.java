@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,6 +25,7 @@ import lombok.NoArgsConstructor;
  *     <li>See Jobs Applications when the owner.</li>
  * </ul>
  *
+ * @version 0.2.4
  * @see User Main User Class.
  * @see Candidate Candidate Only Fields.
  * @since 0.2
@@ -40,12 +42,14 @@ public class Company {
      * @since 0.2
      */
     @Id
+    @NotNull
     private Long id;
     /**
      * Company full-qualified name.
      *
      * @since 0.2
      */
+    @NotNull
     private String name;
     /**
      * A Short Business Description.
@@ -65,6 +69,7 @@ public class Company {
      * @since 0.2
      */
     @Enumerated(EnumType.ORDINAL)
+    @NotNull
     private Industry industry;
 
     /**
@@ -80,7 +85,7 @@ public class Company {
         company.setId(user.getId());
         company.setName(dto.getName());
         company.setDescription(dto.getDescription());
-        company.setWebsiteUrl(dto.getWebsiteUrl());
+        company.setWebsiteUrl(dto.getWebsiteUrl().orElse(null));
         company.setIndustry(Industry.valueOf(dto.getIndustry()));
         return company;
     }

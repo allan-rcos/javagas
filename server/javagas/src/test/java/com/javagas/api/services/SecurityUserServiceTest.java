@@ -1,4 +1,4 @@
-package com.javagas.api.security;
+package com.javagas.api.services;
 
 import com.javagas.api.models.User;
 import com.javagas.api.repositories.UserRepo;

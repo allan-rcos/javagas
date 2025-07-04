@@ -1,6 +1,7 @@
 package com.javagas.api.services;
 
 import com.javagas.api.dto.CandidateDTO;
+import com.javagas.api.exceptions.UserAlreadyExistsException;
 import com.javagas.api.models.Candidate;
 import com.javagas.api.models.User;
 import com.javagas.api.repositories.CandidateRepo;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 /**
  * A Service for Candidate Users.
  *
+ * @version 0.2.4
  * @see UserService Main utility class.
  * @since 0.2
  */
@@ -56,7 +58,8 @@ public class CandidateService {
      * @return The User saved.
      * @since 0.2
      */
-    public Candidate createCandidate(final CandidateDTO dto) {
+    public Candidate createCandidate(final CandidateDTO dto)
+            throws UserAlreadyExistsException {
         User user = userService.saveUser(dto);
         Candidate candidate = Candidate.buildWithDTO(user, dto);
         return repository.save(candidate);

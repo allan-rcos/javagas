@@ -1,12 +1,11 @@
-package com.javagas.api.security;
+package com.javagas.api.utils;
 
 /**
  * A Static class with constants used in this package.
  *
- * @since 0.2
- * @deprecated Use {@link com.javagas.api.utils.SecurityConstants} instead.
+ * @version 0.2.4
+ * @since 0.2 As part of Security package.
  */
-@Deprecated(forRemoval = true, since = "0.2.4")
 public final class SecurityConstants {
     /**
      * A Time Expiration for the JWT Token. Default {@value}.

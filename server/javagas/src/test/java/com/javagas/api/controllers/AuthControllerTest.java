@@ -3,9 +3,10 @@ package com.javagas.api.controllers;
 import com.javagas.api.dto.CandidateDTO;
 import com.javagas.api.dto.CompanyDTO;
 import com.javagas.api.dto.LoginDTO;
-import com.javagas.api.security.JWTGenerator;
+import com.javagas.api.exceptions.UserAlreadyExistsException;
 import com.javagas.api.services.CandidateService;
 import com.javagas.api.services.CompanyService;
+import com.javagas.api.services.JWTGenerator;
 import com.javagas.api.utils.AuthFactory;
 import com.javagas.api.utils.DTOFactory;
 import org.assertj.core.api.Assertions;
@@ -115,7 +116,8 @@ class AuthControllerTest {
      */
     @Test
     @DisplayName("Register Candidate Will Return Ok Response Successfully")
-    void registerCandidateWillReturnOkResponseSuccessfully() {
+    void registerCandidateWillReturnOkResponseSuccessfully()
+            throws UserAlreadyExistsException {
         var response = authController.registerCandidate(candidateDTO);
         Assertions.assertThat(response)
                 .isNotNull();
@@ -132,7 +134,8 @@ class AuthControllerTest {
      */
     @Test
     @DisplayName("Register Company Will Return Ok Response Successfully")
-    void registerCompanyWillReturnOkResponseSuccessfully() {
+    void registerCompanyWillReturnOkResponseSuccessfully()
+            throws UserAlreadyExistsException {
         var response = authController.registerCompany(companyDTO);
         Assertions.assertThat(response)
                 .isNotNull();
@@ -148,9 +151,10 @@ class AuthControllerTest {
      * @since 0.2
      */
     @Test
-    @DisplayName("Register Company with Invalid Industry Will Return"
+    @DisplayName("Register Company with Invalid Industry Will Return "
             + "Bad Request")
-    void registerCompanyWithInvalidIndustryWillReturnBadRequest() {
+    void registerCompanyWithInvalidIndustryWillReturnBadRequest()
+            throws UserAlreadyExistsException {
         CompanyDTO dto = DTOFactory.createCompanyUser();
         String invalidIndustry = "Software Development";
         dto.setIndustry(invalidIndustry);
@@ -164,7 +168,7 @@ class AuthControllerTest {
     }
 
     /**
-     * A Test to Login a User Successfully.
+     * A Test to Log in a User Successfully.
      *
      * @since 0.2
      */

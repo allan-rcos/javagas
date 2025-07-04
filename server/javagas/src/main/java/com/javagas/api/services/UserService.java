@@ -1,14 +1,12 @@
 package com.javagas.api.services;
 
 import com.javagas.api.dto.UserDTO;
+import com.javagas.api.exceptions.UserAlreadyExistsException;
 import com.javagas.api.models.User;
 import com.javagas.api.repositories.UserRepo;
-import com.javagas.api.security.SecurityConfig;
 import com.javagas.api.utils.Role;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +18,11 @@ import org.springframework.stereotype.Service;
  * own Role.
  * </p>
  *
- * @since 0.2
+ * @version 0.2.4
+ * @since 0.2 As part of Security package.
  */
 @Service
-@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS, value = "prototype")
+@Scope("prototype")
 public class UserService {
     /**
      * User Repository used to talk to Database.
@@ -35,7 +34,7 @@ public class UserService {
     /**
      * A Password Encoder used to hash the password.
      *
-     * @see SecurityConfig Encoder Bean Declaration.
+     * @see com.javagas.api.config.SecurityConfig Encoder Bean Declaration.
      * @since 0.2
      */
     private final PasswordEncoder encoder;
@@ -51,15 +50,15 @@ public class UserService {
      * The Constructor to inject the dependencies.
      *
      * @param userRepo The User Repository, used to talk to database.
-     * @param context  Get the Encoder Bean.
-     * @see SecurityConfig Where are the Encode Bean.
+     * @param enc      Get the Encoder Bean.
+     * @see com.javagas.api.config.SecurityConfig Where are the Encode Bean.
      * @since 0.2
      */
     @Autowired
     public UserService(final UserRepo userRepo,
-                       final ApplicationContext context) {
+                       final PasswordEncoder enc) {
         repo = userRepo;
-        encoder = context.getBean("encoder", PasswordEncoder.class);
+        encoder = enc;
     }
 
     /**
@@ -80,7 +79,7 @@ public class UserService {
      * @return The User saved.
      * @since 0.2
      */
-    public User saveUser(final UserDTO dto) {
+    public User saveUser(final UserDTO dto) throws UserAlreadyExistsException {
         return this.saveUser(this.buildUser(dto));
     }
 
@@ -106,9 +105,16 @@ public class UserService {
      *
      * @param dto A Data Transfer Object that inherits {@link UserDTO}
      * @return A User Model.
+     * @throws UserAlreadyExistsException If the username or email exists.
      * @since 0.2
      */
-    public User buildUser(final UserDTO dto) {
+    public User buildUser(final UserDTO dto) throws UserAlreadyExistsException {
+        if (this.repo.existsByUsername(dto.getUsername())) {
+            throw new UserAlreadyExistsException("Username already exists");
+        }
+        if (this.repo.existsByEmail(dto.getEmail())) {
+            throw new UserAlreadyExistsException("Email already exists");
+        }
         return User.builder()
                 .username(dto.getUsername())
                 .password(encoder.encode(dto.getPassword()))

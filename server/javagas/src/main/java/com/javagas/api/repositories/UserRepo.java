@@ -9,6 +9,7 @@ import java.util.Optional;
 /**
  * The User Model Repository.
  *
+ * @version 0.2.4
  * @see org.springframework.data.jpa.repository.JpaRepository
  * @since 0.2
  */
@@ -31,4 +32,13 @@ public interface UserRepo extends JpaRepository<User, Integer> {
      * @since 0.2
      */
     Boolean existsByUsername(String username);
+
+    /**
+     * Check if the email exists in the Database.
+     *
+     * @param email The email to search.
+     * @return A Boolean, if exists or not.
+     * @since 0.2.4
+     */
+    Boolean existsByEmail(String email);
 }

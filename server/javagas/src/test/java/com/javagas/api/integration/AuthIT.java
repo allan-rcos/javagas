@@ -5,9 +5,10 @@ import com.javagas.api.models.User;
 import com.javagas.api.repositories.CandidateRepo;
 import com.javagas.api.repositories.CompanyRepo;
 import com.javagas.api.repositories.UserRepo;
-import com.javagas.api.security.JWTGenerator;
+import com.javagas.api.services.JWTGenerator;
 import com.javagas.api.utils.DTOFactory;
 import com.javagas.api.utils.ModelFactory;
+import com.javagas.api.utils.Role;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.DirtiesContext;
 
+import java.util.Map;
 import java.util.Optional;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -144,6 +146,134 @@ class AuthIT {
     }
 
     /**
+     * A Test to Register a Candidate User with Invalid Industry Data.
+     *
+     * @since 0.2
+     */
+    @Test
+    @DisplayName("Register Candidate with Invalid Data will return "
+            + "Bad Request")
+    void registerCandidateWithInvalidDataReturnBadRequest() {
+        CandidateDTO dto = DTOFactory.createCandidateUser();
+        dto.setLinkedinURL(Optional.of("invalid-url"));
+        dto.setPassword("1234");
+        dto.setFirstName("");
+        dto.setLastName("");
+        var response = guest.postForEntity(
+                "/auth/candidate/register",
+                dto,
+                Map.class
+        );
+        Map<String, String> body = response.getBody();
+        Assertions.assertNotNull(response,
+                "Response should not be null");
+        Assertions.assertEquals(
+                HttpStatus.BAD_REQUEST, response.getStatusCode(),
+                "Status code should be BAD_REQUEST");
+        Assertions.assertNotNull(body,
+                "Response body should not be null");
+        Assertions.assertTrue(body.containsKey("linkedinURL"),
+                "Response body should contain 'linkedinURL' key "
+                        + "Because it is invalid");
+        Assertions.assertTrue(body.containsKey("password"),
+                "Response body should contain 'password' key "
+                        + "Because it is invalid");
+        Assertions.assertTrue(body.containsKey("firstName"),
+                "Response body should contain 'firstName' key "
+                        + "Because it is invalid");
+        Assertions.assertTrue(body.containsKey("lastName"),
+                "Response body should contain 'lastName' key "
+                        + "Because it is invalid");
+        Assertions.assertEquals(4, body.size(),
+                "Response body should contain 4 keys");
+        Optional<User> created =
+                userRepo.findUserByUsername(dto.getUsername());
+        Assertions.assertTrue(created.isEmpty(),
+                "User should not be created in the database");
+    }
+
+    /**
+     * A Test to Register a Candidate User that Already Exists.
+     * <p>
+     * This test will check if the method `registerCandidate` returns
+     * a Bad Request response when the user already exists in the database.
+     * </p>
+     *
+     * @since 0.2
+     */
+    @Test
+    @DisplayName("Register Candidate that Already Exists (Username) will return"
+            + " Bad Request")
+    void registerCandidateWithUsernameThatExistsWillReturnBadRequest() {
+        userRepo.save(User.builder()
+                .username(candidateDTO.getUsername())
+                .password(passwordEncoder.encode(candidateDTO.getPassword()))
+                .authorityRole(Role.CANDIDATE)
+                .email("2" + candidateDTO.getEmail()) // Ensure unique email
+                .build());
+        var response = guest.postForEntity(
+                "/auth/candidate/register",
+                candidateDTO,
+                MessageResponse.class
+        );
+        MessageResponse body = response.getBody();
+        Assertions.assertNotNull(response,
+                "Response should not be null");
+        Assertions.assertEquals(
+                HttpStatus.BAD_REQUEST, response.getStatusCode(),
+                "Status code should be BAD_REQUEST");
+        Assertions.assertNotNull(body,
+                "Response body should not be null");
+        Assertions.assertTrue(
+                body.getMessage().toLowerCase().contains("username"),
+                "Response body should contain 'websiteUrl' key "
+                        + "Because it is invalid");
+        Assertions.assertFalse(userRepo.existsByEmail(candidateDTO.getEmail()),
+                "User should not be created in the database");
+    }
+
+    /**
+     * A Test to Register a Candidate User that Already Exists.
+     * <p>
+     * This test will check if the method `registerCandidate` returns
+     * a Bad Request response when the user already exists in the database.
+     * </p>
+     *
+     * @since 0.2
+     */
+    @Test
+    @DisplayName("Register Candidate that Already Exists (Email) will return "
+            + "Bad Request")
+    void registerCandidateWithEmailThatExistsWillReturnBadRequest() {
+        userRepo.save(User.builder()
+                .username("2" + candidateDTO.getUsername()) // Ensure unique
+                .password(passwordEncoder.encode(candidateDTO.getPassword()))
+                .authorityRole(Role.CANDIDATE)
+                .email(candidateDTO.getEmail())
+                .build());
+        var response = guest.postForEntity(
+                "/auth/candidate/register",
+                candidateDTO,
+                MessageResponse.class
+        );
+        MessageResponse body = response.getBody();
+        Assertions.assertNotNull(response,
+                "Response should not be null");
+        Assertions.assertEquals(
+                HttpStatus.BAD_REQUEST, response.getStatusCode(),
+                "Status code should be BAD_REQUEST");
+        Assertions.assertNotNull(body,
+                "Response body should not be null");
+        Assertions.assertTrue(
+                body.getMessage().toLowerCase().contains("email"),
+                "Response body should contain 'websiteUrl' key "
+                        + "Because it is invalid");
+        Assertions.assertFalse(
+                userRepo.existsByUsername(candidateDTO.getUsername()),
+                "User should not be created in the database");
+    }
+
+    /**
      * A Test to Register a Company User Successfully.
      *
      * @since 0.2
@@ -200,6 +330,130 @@ class AuthIT {
         Optional<User> created =
                 userRepo.findUserByUsername(dto.getUsername());
         Assertions.assertTrue(created.isEmpty(),
+                "User should not be created in the database");
+    }
+
+    /**
+     * A Test to Register a Company User with Invalid Data.
+     *
+     * @since 0.2
+     */
+    @Test
+    @DisplayName("Register Company with Invalid Data will return "
+            + "Bad Request")
+    void registerCompanyWithInvalidDataReturnBadRequest() {
+        CompanyDTO dto = DTOFactory.createCompanyUser();
+        dto.setWebsiteUrl(Optional.of("invalid-url"));
+        dto.setPassword("1234");
+        dto.setName("");
+        var response = guest.postForEntity(
+                "/auth/company/register",
+                dto,
+                Map.class
+        );
+        Map<String, String> body = response.getBody();
+        Assertions.assertNotNull(response,
+                "Response should not be null");
+        Assertions.assertEquals(
+                HttpStatus.BAD_REQUEST, response.getStatusCode(),
+                "Status code should be BAD_REQUEST");
+        Assertions.assertNotNull(body,
+                "Response body should not be null");
+        Assertions.assertTrue(body.containsKey("websiteUrl"),
+                "Response body should contain 'websiteUrl' key "
+                        + "Because it is invalid");
+        Assertions.assertTrue(body.containsKey("password"),
+                "Response body should contain 'password' key "
+                        + "Because it is invalid");
+        Assertions.assertTrue(body.containsKey("name"),
+                "Response body should contain 'name' key "
+                        + "Because it is invalid");
+        Assertions.assertEquals(3, body.size(),
+                "Response body should contain 3 keys");
+        Optional<User> created =
+                userRepo.findUserByUsername(dto.getUsername());
+        Assertions.assertTrue(created.isEmpty(),
+                "User should not be created in the database");
+    }
+
+    /**
+     * A Test to Register a Company User that Already Exists.
+     * <p>
+     * This test will check if the method `registerCompany` returns
+     * a Bad Request response when the user already exists in the database.
+     * </p>
+     *
+     * @since 0.2
+     */
+    @Test
+    @DisplayName("Register Company that Already Exists (Username) will return "
+            + "Bad Request")
+    void registerCompanyWithUsernameThatExistsWillReturnBadRequest() {
+        userRepo.save(User.builder()
+                .username(companyDTO.getUsername())
+                .password(passwordEncoder.encode(companyDTO.getPassword()))
+                .authorityRole(Role.CANDIDATE)
+                .email("2" + companyDTO.getEmail()) // Ensure unique email
+                .build());
+        var response = guest.postForEntity(
+                "/auth/company/register",
+                companyDTO,
+                MessageResponse.class
+        );
+        MessageResponse body = response.getBody();
+        Assertions.assertNotNull(response,
+                "Response should not be null");
+        Assertions.assertEquals(
+                HttpStatus.BAD_REQUEST, response.getStatusCode(),
+                "Status code should be BAD_REQUEST");
+        Assertions.assertNotNull(body,
+                "Response body should not be null");
+        Assertions.assertTrue(
+                body.getMessage().toLowerCase().contains("username"),
+                "Response body should contain 'websiteUrl' key "
+                        + "Because it is invalid");
+        Assertions.assertFalse(userRepo.existsByEmail(companyDTO.getEmail()),
+                "User should not be created in the database");
+    }
+
+    /**
+     * A Test to Register a Company User that Already Exists.
+     * <p>
+     * This test will check if the method `registerCompany` returns
+     * a Bad Request response when the user already exists in the database.
+     * </p>
+     *
+     * @since 0.2
+     */
+    @Test
+    @DisplayName("Register Company that Already Exists (Email) will return "
+            + "Bad Request")
+    void registerCompanyWithEmailThatExistsWillReturnBadRequest() {
+        userRepo.save(User.builder()
+                .username("2" + companyDTO.getUsername()) // Ensure unique user
+                .password(passwordEncoder.encode(companyDTO.getPassword()))
+                .authorityRole(Role.CANDIDATE)
+                .email(companyDTO.getEmail())
+                .build());
+        var response = guest.postForEntity(
+                "/auth/company/register",
+                companyDTO,
+                MessageResponse.class
+        );
+        MessageResponse body = response.getBody();
+        Assertions.assertNotNull(response,
+                "Response should not be null");
+        Assertions.assertEquals(
+                HttpStatus.BAD_REQUEST, response.getStatusCode(),
+                "Status code should be BAD_REQUEST");
+        Assertions.assertNotNull(body,
+                "Response body should not be null");
+        Assertions.assertTrue(
+                body.getMessage().toLowerCase().contains("email"),
+                "Response body should contain 'websiteUrl' key "
+                        + "Because it is invalid");
+        Assertions.assertFalse(
+                userRepo.existsByUsername(companyDTO.getUsername()),
                 "User should not be created in the database");
     }
 

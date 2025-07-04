@@ -6,4 +6,4 @@
  * @since 0.2
  */
 
-package com.javagas.api.security;
+package com.javagas.api.filters;

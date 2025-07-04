@@ -1,6 +1,8 @@
-package com.javagas.api.security;
+package com.javagas.api.filters;
 
+import com.javagas.api.models.SecurityUser;
 import com.javagas.api.models.User;
+import com.javagas.api.services.JWTGenerator;
 import com.javagas.api.utils.AuthFactory;
 import com.javagas.api.utils.ModelFactory;
 import jakarta.servlet.FilterChain;

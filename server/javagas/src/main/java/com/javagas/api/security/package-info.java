@@ -9,6 +9,7 @@
  * @since 0.2
  */
 @NonNullApi
+@Deprecated(forRemoval = true, since = "0.2.4")
 package com.javagas.api.security;
 
 import org.springframework.lang.NonNullApi;

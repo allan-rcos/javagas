@@ -5,6 +5,8 @@ import com.javagas.api.dto.CompanyDTO;
 import com.javagas.api.dto.LoginDTO;
 import lombok.experimental.UtilityClass;
 
+import java.util.Optional;
+
 /**
  * A Factory to create Data Transfer Objects (DTOs) for testing purposes.
  * <p>
@@ -28,7 +30,7 @@ public final class DTOFactory {
         dto.setEmail(TestConstants.COMPANY_EMAIL);
         dto.setName(TestConstants.COMPANY_NAME);
         dto.setDescription(TestConstants.COMPANY_DESCRIPTION);
-        dto.setWebsiteUrl(TestConstants.COMPANY_WEBSITE_URL);
+        dto.setWebsiteUrl(Optional.of(TestConstants.COMPANY_WEBSITE_URL));
         dto.setIndustry(TestConstants.COMPANY_INDUSTRY);
         return dto;
     }
@@ -45,7 +47,7 @@ public final class DTOFactory {
         dto.setEmail(TestConstants.CANDIDATE_EMAIL);
         dto.setFirstName(TestConstants.CANDIDATE_FIRST_NAME);
         dto.setLastName(TestConstants.CANDIDATE_LAST_NAME);
-        dto.setLinkedinURL(TestConstants.CANDIDATE_LINKEDIN_URL);
+        dto.setLinkedinURL(Optional.of(TestConstants.CANDIDATE_LINKEDIN_URL));
         dto.setBio(TestConstants.CANDIDATE_BIO);
         return dto;
     }
@@ -60,6 +62,18 @@ public final class DTOFactory {
         LoginDTO dto = new LoginDTO();
         dto.setUsername(TestConstants.CANDIDATE_USERNAME);
         dto.setPassword(TestConstants.PASSWORD);
+        return dto;
+    }
+
+    public static CompanyDTO createInvalidCompanyUser() {
+        CompanyDTO dto = new CompanyDTO();
+        dto.setUsername(TestConstants.COMPANY_USERNAME);
+        dto.setPassword(TestConstants.PASSWORD);
+        dto.setEmail(TestConstants.COMPANY_EMAIL);
+        dto.setName(TestConstants.COMPANY_NAME);
+        dto.setDescription(TestConstants.COMPANY_DESCRIPTION);
+        dto.setWebsiteUrl(Optional.of(TestConstants.COMPANY_WEBSITE_URL));
+        dto.setIndustry(TestConstants.COMPANY_INDUSTRY);
         return dto;
     }
 }

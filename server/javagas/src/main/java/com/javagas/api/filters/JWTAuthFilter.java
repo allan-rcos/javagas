@@ -1,5 +1,9 @@
-package com.javagas.api.security;
+package com.javagas.api.filters;
 
+import com.javagas.api.models.SecurityUser;
+import com.javagas.api.services.JWTGenerator;
+import com.javagas.api.services.SecurityUserService;
+import com.javagas.api.utils.SecurityConstants;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -21,9 +26,8 @@ import java.io.IOException;
  * A Filter Component that will validate Bearer Tokens in Whole Application.
  *
  * @since 0.2
- * @deprecated Use {@link com.javagas.api.filters.JWTAuthFilter JWTAuthFilter}
  */
-@Deprecated(forRemoval = true, since = "0.2.4")
+@Component
 @Log4j2
 public class JWTAuthFilter extends OncePerRequestFilter {
 

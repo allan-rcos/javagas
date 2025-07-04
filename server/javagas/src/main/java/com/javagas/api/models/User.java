@@ -2,6 +2,7 @@ package com.javagas.api.models;
 
 import com.javagas.api.utils.Role;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 /**
  * The main User class.
  *
+ * @version 0.2.4
  * @since 0.2
  */
 @Data
@@ -32,6 +34,7 @@ public class User {
      *
      * @since 0.2
      */
+    @Column(unique = true)
     private String username;
     /**
      * Email to verify identity. Is public to Companies.
@@ -39,6 +42,7 @@ public class User {
      * @see Role
      * @since 0.2
      */
+    @Column(unique = true)
     private String email;
     /**
      * Password used in login.
@@ -73,5 +77,6 @@ public class User {
      */
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "authority")
+    @NotNull
     private Role authorityRole;
 }

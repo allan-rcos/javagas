@@ -2,6 +2,7 @@ package com.javagas.api.services;
 
 import com.javagas.api.dto.CompanyDTO;
 import com.javagas.api.dto.UserDTO;
+import com.javagas.api.exceptions.UserAlreadyExistsException;
 import com.javagas.api.models.Company;
 import com.javagas.api.models.User;
 import com.javagas.api.repositories.CompanyRepo;
@@ -94,7 +95,8 @@ class CompanyServiceTest {
      */
     @Test
     @DisplayName("Create the Company - Create the Company Successfully")
-    void createCompanyCreateTheCompanySuccessfully() {
+    void createCompanyCreateTheCompanySuccessfully()
+            throws UserAlreadyExistsException {
         BDDMockito.when(userService.saveUser(BDDMockito.any(UserDTO.class)))
                 .thenReturn(user);
         BDDMockito.when(repository.save(BDDMockito.any(Company.class)))

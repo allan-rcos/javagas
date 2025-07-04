@@ -2,7 +2,10 @@ package com.javagas.api.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 /**
  * The Company Data Transfer Object.
@@ -38,7 +41,7 @@ public class CompanyDTO extends UserDTO {
      * @see com.javagas.api.models.Company
      * @since 0.2
      */
-    private String websiteUrl;
+    private Optional<@URL String> websiteUrl = Optional.empty();
     /**
      * The User Industry such an Enum Name.
      *

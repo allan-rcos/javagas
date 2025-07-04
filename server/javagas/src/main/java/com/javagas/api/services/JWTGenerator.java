@@ -1,9 +1,11 @@
-package com.javagas.api.security;
+package com.javagas.api.services;
 
+import com.javagas.api.utils.SecurityConstants;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.Getter;
+import org.springframework.stereotype.Component;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -15,11 +17,11 @@ import java.util.Date;
 /**
  * The service that generate and validate Json Web Tokens.
  *
- * @since 0.2
- * @deprecated Use {@link com.javagas.api.services.JWTGenerator} instead.
+ * @version 0.2.4
+ * @since 0.2 As part of Security package.
  */
 @Getter
-@Deprecated(forRemoval = true, since = "0.2.4")
+@Component
 public class JWTGenerator {
     /**
      * The Secret Key used to Sign In the token.

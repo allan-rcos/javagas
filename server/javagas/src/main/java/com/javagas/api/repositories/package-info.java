@@ -6,7 +6,7 @@
  * </p>
  *
  * @author Ricardo Állan Costa
- * @version 0.2
+ * @version 0.2.4
  * @since 0.2
  */
 package com.javagas.api.repositories;

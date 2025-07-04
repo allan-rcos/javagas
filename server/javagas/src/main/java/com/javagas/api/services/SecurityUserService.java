@@ -1,11 +1,13 @@
-package com.javagas.api.security;
+package com.javagas.api.services;
 
+import com.javagas.api.models.SecurityUser;
 import com.javagas.api.models.User;
 import com.javagas.api.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 /**
  * Spring Boot User Detail Service.
@@ -14,10 +16,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  * {@link org.springframework.security.core.userdetails.User SpringUser}.
  * </p>
  *
- * @since 0.2
- * @deprecated Use {@link com.javagas.api.services.SecurityUserService} instead.
+ * @version 0.2.4
+ * @since 0.2 As part of Security package.
  */
-@Deprecated(forRemoval = true, since = "0.2.4")
+@Service
 public class SecurityUserService implements UserDetailsService {
     /**
      * The User Repository. This class will make the Database Communication.

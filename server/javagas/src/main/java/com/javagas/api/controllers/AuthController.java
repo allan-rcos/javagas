@@ -1,9 +1,10 @@
 package com.javagas.api.controllers;
 
 import com.javagas.api.dto.*;
-import com.javagas.api.security.JWTGenerator;
+import com.javagas.api.exceptions.UserAlreadyExistsException;
 import com.javagas.api.services.CandidateService;
 import com.javagas.api.services.CompanyService;
+import com.javagas.api.services.JWTGenerator;
 import com.javagas.api.utils.Industry;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * A Controller to Authentication Needs, such Login or Delete Account.
  *
+ * @version 0.2.4
  * @since 0.2
  */
 @Tag(name = "Authentication",
@@ -114,7 +116,7 @@ public class AuthController {
                             )
                     )
             ) @Valid @RequestBody final CandidateDTO candidate
-    ) {
+    ) throws UserAlreadyExistsException {
         candidateService.createCandidate(candidate);
 
         return new ResponseEntity<>(
@@ -154,7 +156,7 @@ public class AuthController {
                             )
                     )
             ) @Valid @RequestBody final CompanyDTO company
-    ) {
+    ) throws UserAlreadyExistsException {
         if (!Industry.exists(company.getIndustry())) {
             return ResponseEntity.badRequest().body(
                     new MessageResponse("Not Found Industry!"));
@@ -197,8 +199,7 @@ public class AuthController {
                                     implementation = LoginDTO.class
                             )
                     )
-            ) @Valid @RequestBody final LoginDTO user) {
-
+            ) @RequestBody final LoginDTO user) {
         Authentication authentication = manager
                 .authenticate(new UsernamePasswordAuthenticationToken(
                         user.getUsername(), user.getPassword()));

@@ -1,7 +1,7 @@
 package com.javagas.api.utils;
 
-import com.javagas.api.security.JWTGenerator;
-import com.javagas.api.security.SecurityUser;
+import com.javagas.api.models.SecurityUser;
+import com.javagas.api.services.JWTGenerator;
 import lombok.experimental.UtilityClass;
 
 /**

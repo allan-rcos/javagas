@@ -3,6 +3,7 @@ package com.javagas.api.models;
 import com.javagas.api.dto.CandidateDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,6 +22,7 @@ import lombok.NoArgsConstructor;
  *     <li>See Jobs all.</li>
  * </ul>
  *
+ * @version 0.2.4
  * @see User Main User
  * @see Company Company Only Fields
  * @since 0.2
@@ -37,18 +39,21 @@ public class Candidate {
      * @since 0.2
      */
     @Id
+    @NotNull
     private Long id;
     /**
      * Candidate First Name.
      *
      * @since 0.2
      */
+    @NotNull
     private String firstName;
     /**
      * Candidate Last Name.
      *
      * @since 0.2
      */
+    @NotNull
     private String lastName;
     /**
      * A URL to the user LinkedIn Account.
@@ -76,7 +81,7 @@ public class Candidate {
         candidate.setId(user.getId());
         candidate.setFirstName(dto.getFirstName());
         candidate.setLastName(dto.getLastName());
-        candidate.setLinkedinUrl(dto.getLinkedinURL());
+        candidate.setLinkedinUrl(dto.getLinkedinURL().orElse(null));
         candidate.setBio(dto.getBio());
         return candidate;
     }

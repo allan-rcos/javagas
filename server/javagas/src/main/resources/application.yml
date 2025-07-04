@@ -2,12 +2,15 @@ spring:
   application:
     name: JaVagas
   datasource:
-    url: jdbc:postgresql://postgres:5432/javagas
-    username: api
-    password: secret
-  jpa:
-    properties:
-      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/javagas_db}
+    username: ${POSTGRES_USER:javagas_user}
+    password: ${POSTGRES_PASSWORD:000000}
+  flyway:
+    enabled: true
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/javagas_db}
+    user: ${POSTGRES_USER:javagas_user}
+    password: ${POSTGRES_PASSWORD:000000}
+    locations: classpath:db/migrations/postgresql
 #  datasource:
 #    url: jdbc:h2:mem:testdb
 #    driverClassName: org.h2.Driver
@@ -16,6 +19,8 @@ spring:
 #  jpa:
 #    database-platform: org.hibernate.dialect.H2Dialect
 logging.level.org.hibernate.SQL: DEBUG
+springdoc.api-docs.path: /api/docs
+server.forward-headers-strategy: framework
 management:
   endpoints:
     web.exposure.include: health, info, metrics, prometheus
@@ -37,8 +42,3 @@ info:
     time: ${maven.build.timestamp}
     user: ${user.name}
     host: ${host.name}
-springdoc:
-  api-docs:
-    path: /api/docs
-server:
-  forward-headers-strategy: framework

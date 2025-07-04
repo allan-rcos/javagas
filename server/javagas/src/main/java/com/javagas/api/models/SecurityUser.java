@@ -1,6 +1,5 @@
-package com.javagas.api.security;
+package com.javagas.api.models;
 
-import com.javagas.api.models.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -15,10 +14,8 @@ import java.util.Collections;
  * </p>
  *
  * @since 0.2
- * @deprecated Use {@link com.javagas.api.models.SecurityUser} instead.
  */
 @AllArgsConstructor
-@Deprecated(forRemoval = true, since = "0.2.4")
 public class SecurityUser implements
         org.springframework.security.core.userdetails.UserDetails {
     /**

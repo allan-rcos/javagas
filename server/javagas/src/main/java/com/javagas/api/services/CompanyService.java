@@ -1,6 +1,7 @@
 package com.javagas.api.services;
 
 import com.javagas.api.dto.CompanyDTO;
+import com.javagas.api.exceptions.UserAlreadyExistsException;
 import com.javagas.api.models.Company;
 import com.javagas.api.models.User;
 import com.javagas.api.repositories.CompanyRepo;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 /**
  * A Service for Company Users.
  *
+ * @version 0.2.4
  * @see UserService Main utility class.
  * @since 0.2
  */
@@ -56,7 +58,8 @@ public class CompanyService {
      * @return The User saved.
      * @since 0.2
      */
-    public Company createCompany(final CompanyDTO dto) {
+    public Company createCompany(final CompanyDTO dto)
+            throws UserAlreadyExistsException {
         User user = userService.saveUser(dto);
         Company company = Company.buildWithDTO(user, dto);
         return repository.save(company);

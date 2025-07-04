@@ -1,5 +1,5 @@
 /**
- * Javagas
+ * JaVagas
  * <p>
  * <strong>JaVagas</strong> is a website proposal for training a
  * recruitment solution. Created with Java SpringBoot,
@@ -7,7 +7,7 @@
  * </p>
  *
  * @author Ricardo Állan Costa
- * @version 0.2.1
+ * @version 0.2.4
  * @since 0.1
  */
 package com.javagas.api;

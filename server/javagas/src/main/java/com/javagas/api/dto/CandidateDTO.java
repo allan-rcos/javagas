@@ -2,7 +2,10 @@ package com.javagas.api.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 /**
  * The Candidate Data Transfer Object.
@@ -39,7 +42,7 @@ public class CandidateDTO extends UserDTO {
      * @see com.javagas.api.models.Candidate
      * @since 0.2
      */
-    private String linkedinURL;
+    private Optional<@URL String> linkedinURL = Optional.empty();
     /**
      * A Biograph for the Candidate.
      *

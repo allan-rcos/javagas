@@ -1,14 +1,18 @@
-package com.javagas.api.security;
+package com.javagas.api.config;
 
+import com.javagas.api.filters.JWTAuthFilter;
+import com.javagas.api.services.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,10 +23,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 /**
  * A Configuration Class to Spring Security. Will define the filters chain.
  *
- * @since 0.2
- * @deprecated Use {@link com.javagas.api.config.SecurityConfig} instead.
+ * @version 0.2.4
+ * @since 0.2 As part of the Security package.
  */
-@Deprecated(forRemoval = true, since = "0.2.4")
+@Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
     /**
