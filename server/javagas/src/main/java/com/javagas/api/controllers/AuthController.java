@@ -102,7 +102,10 @@ public class AuthController {
                     description = "Candidate registered successfully"),
             @ApiResponse(
                     responseCode = "400",
-                    description = "Bad Request - Invalid Candidate Data")
+                    description = "Bad Request - Invalid Candidate Data"),
+            @ApiResponse(
+                    responseCode = "409",
+                    description = "Conflict - Username or Email already exists")
     })
     @PostMapping("candidate/register")
     public ResponseEntity<MessageResponse> registerCandidate(
@@ -142,7 +145,10 @@ public class AuthController {
             @ApiResponse(
                     responseCode = "400",
                     description = "Bad Request - Industry Not Found or "
-                            + "invalid Company Data")
+                            + "invalid Company Data"),
+            @ApiResponse(
+                    responseCode = "409",
+                    description = "Conflict - Username or Email already exists")
     })
     @PostMapping("company/register")
     public ResponseEntity<MessageResponse> registerCompany(

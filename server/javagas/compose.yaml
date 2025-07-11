@@ -2,10 +2,7 @@ x-database-variables: &db-variables
   POSTGRES_DB: javagas
   POSTGRES_USER: api
   POSTGRES_PASSWORD: secret
-x-spring-database-variables: &spring-db-variables
   POSTGRES_URL: jdbc:postgresql://postgres:5432/javagas
-  POSTGRES_USER: api
-  POSTGRES_PASSWORD: secret
 services:
   server:
     image: rickallan/javagas-server:latest
@@ -13,7 +10,7 @@ services:
     ports:
       - '8080:8080'
     environment:
-      <<: *spring-db-variables
+      <<: *db-variables
     networks:
       - default
     mem_limit: 512m

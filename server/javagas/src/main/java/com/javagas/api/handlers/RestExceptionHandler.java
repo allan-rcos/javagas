@@ -74,13 +74,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
      * @return a ResponseEntity containing the error message.
      * @since 0.2.4
      */
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(UserAlreadyExistsException.class)
     protected ResponseEntity<MessageResponse> handleErrorResponseException(
             final UserAlreadyExistsException ex) {
         String message = "Bad Request: " + ex.getMessage();
         logger.error(message, ex);
         return new ResponseEntity<>(service.createMessage(message),
-                HttpStatus.BAD_REQUEST);
+                HttpStatus.CONFLICT);
     }
 }

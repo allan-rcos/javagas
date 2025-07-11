@@ -13,5 +13,5 @@ import { RouterOutlet } from '@angular/router';
 })
 export class App {
   /** The application title */
-  protected title = 'javagas';
+  protected title = 'JaVagas';
 }

@@ -18,6 +18,7 @@ Neste projeto terei como foco, alem da aplicação de novas ferramentas, utiliza
 
 ## 📋 Roteiro
 
+### Concluídos:
 - [x] Modelo Entidade-Relacionamento;
 - [x] Ambiente BackEnd Java;
 - [x] Ambiente FrontEnd Angular;
@@ -25,9 +26,28 @@ Neste projeto terei como foco, alem da aplicação de novas ferramentas, utiliza
 - [x] Comunicação via JWT;
 - [x] Docker File;
 - [x] Docker Compose;
-- [ ] Tela de Usuários no Front;
+- [x] Prometheus e Grafana;
+- [x] Login e Registro de Usuários.
+### Gerais:
+- [ ] Geração de Documentação;
+- [ ] Verificação por email;
+- [ ] CSRF;
+- [ ] Recuperação de Senha;
 - [ ] Prevenção contra Ataque de Força Bruta;
-- [ ] Geração de Documentação.
+- [ ] Skills;
+- [ ] Jobs;
+- [ ] Job Filters;
+- [ ] Application (Aplicação em Vagas).
+### Front End:
+- [ ] Candidate Dashboard;
+- [ ] Company Dashboard;
+- [ ] Tela de pesquisa de Jobs;
+- [ ] Candidate Apllication;
+- [ ] Company Job Show Screen com Apllications;
+- [ ] Home Screen.
+### Back End:
+- [ ] Criação das Tabelas no SQL;
+- [ ] Job Pagination.
 
 ## 🔔 Status do Projeto
 

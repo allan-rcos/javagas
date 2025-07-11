@@ -1,0 +1,42 @@
+<app-register-user-page title="Register as a Candidate">
+  <app-field
+    (fieldValueChanged)="firstName.value = $event"
+    [fieldHelperText]="firstName.helper"
+    [fieldIconRight]="firstName.mode === 'DANGER' ? 'fa-exclamation-triangle' : ''"
+    [fieldMode]="firstName.mode"
+    [required]="true"
+    fieldIconLeft="fa-address-card"
+    fieldLabel="First Name"
+    fieldName="firstName"
+    fieldPlaceholder="Your first name"
+    fieldType="text" />
+  <app-field
+    (fieldValueChanged)="lastName.value = $event"
+    [fieldHelperText]="lastName.helper"
+    [fieldIconRight]="lastName.mode === 'DANGER' ? 'fa-exclamation-triangle' : ''"
+    [fieldMode]="lastName.mode"
+    [required]="true"
+    fieldIconLeft="fa-address-card"
+    fieldLabel="Last Name"
+    fieldName="lastName"
+    fieldPlaceholder="Your last name"
+    fieldType="text" />
+  <app-field
+    (fieldValueChanged)="linkedinUrl.value = $event"
+    [fieldHelperText]="linkedinUrl.helper"
+    [fieldIconRight]="linkedinUrl.mode === 'DANGER' ? 'fa-exclamation-triangle' : ''"
+    [fieldMode]="linkedinUrl.mode"
+    fieldIconLeft="fa-brands fa-linkedin"
+    fieldLabel="LinkedIn Profile URL"
+    fieldName="linkedin_url"
+    fieldPlaceholder="A Link to your LinkedIn profile"
+    fieldType="url" />
+  <app-field
+    (fieldValueChanged)="biograph.value = $event"
+    [fieldHelperText]="biograph.helper"
+    [fieldMode]="biograph.mode"
+    fieldLabel="Biography"
+    fieldName="biograph"
+    fieldPlaceholder="A short biography about you."
+    fieldType="textarea" />
+</app-register-user-page>

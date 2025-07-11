@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @since 0.2.4
  */
 @StandardException
-@ResponseStatus(HttpStatus.BAD_REQUEST)
+@ResponseStatus(HttpStatus.CONFLICT)
 public class UserAlreadyExistsException extends RuntimeException {
 }

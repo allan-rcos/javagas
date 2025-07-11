@@ -1,0 +1,12 @@
+<a [routerLink]="routerLink" class="m-auto">
+  <div class="card is-centered has-text-centered is-size-5 is-hoverable
+              is-flex is-flex-direction-column is-align-items-center is-justify-content-center"
+       style="width: 12rem; height: 12rem;">
+    <img [alt]="imageAlt"
+         [height]="imageHeight"
+         [ngSrc]="imageUrl"
+         [width]="imageWidth"
+         priority>
+    <h4>{{ title }}</h4>
+  </div>
+</a>

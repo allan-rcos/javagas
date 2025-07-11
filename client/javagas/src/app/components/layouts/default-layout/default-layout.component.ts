@@ -5,7 +5,6 @@ import { NavbarComponent } from '../../navbar/navbar.component';
 /**
  * DefaultLayoutComponent is a simple component that represents the default layout
  * of the application.
- *
  * @version 0.1.1
  * @since 0.1.1
  */

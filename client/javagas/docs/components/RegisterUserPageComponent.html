@@ -1,0 +1,1025 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>JaVagas</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">JaVagas</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  RegisterUserPageComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/register/user/register-user-page.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component for the user registration page.
+This component handles user registration by providing a form with fields for email, username, password, and confirm password.
+It uses the RegisterService to handle the registration logic and displays messages based on the success or failure of the registration.
+Used in Register Pages like <a href="../components/RegisterCandidatePage.html">Candidate</a> and <a href="../components/RegisterCompanyPage.html">Company</a> pages.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-register-user-page</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/FieldComponent.html" target="_self" >FieldComponent</a></code>
+                                <code><a href="../components/FormLayoutComponent.html" target="_self" >FormLayoutComponent</a></code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code></code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./register-user-page.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#clearErrors" >clearErrors</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#navigateToLogin" >navigateToLogin</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#submit" >submit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#title" >title</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#title" >title</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="title"></a>
+                        <b>title</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/app/components/register/user/register-user-page.component.ts:119</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Title of the registration page.
+This is used to display the title in the form layout.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clearErrors"></a>
+                    <span class="name">
+                        <span ><b>clearErrors</b></span>
+                        <a href="#clearErrors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clearErrors()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">src/app/components/register/user/register-user-page.component.ts:157</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Method to clear all error messages and reset field modes to default.
+This is useful when the form is submitted and needs to be reset.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToLogin"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>navigateToLogin</b></span>
+                        <a href="#navigateToLogin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>navigateToLogin()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="174"
+                                    class="link-to-prism">src/app/components/register/user/register-user-page.component.ts:174</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Method to navigate to the login page.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="127"
+                                    class="link-to-prism">src/app/components/register/user/register-user-page.component.ts:127</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Method runed when the component is initialized.
+This method is used to set up event listeners for the registration service.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submit"></a>
+                    <span class="name">
+                        <span ><b>submit</b></span>
+                        <a href="#submit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>submit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="140"
+                                    class="link-to-prism">src/app/components/register/user/register-user-page.component.ts:140</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Method to handle form submission.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="title"></a>
+                        <span class="name"><b>title</b><a href="#title"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>title()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/components/register/user/register-user-page.component.ts:110</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Title of the registration page.
+This is used to display the title in the form layout.</p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>title(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/app/components/register/user/register-user-page.component.ts:119</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Title of the registration page.
+This is used to display the title in the form layout.</p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                            <td>
+                                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, Input, OnInit } from &#x27;@angular/core&#x27;;
+import { FieldComponent, FieldOptions } from &#x27;../../form/field/field.component&#x27;;
+import {
+  FormLayoutComponent,
+  FormMessageOptions
+} from &#x27;../../layouts/form-layout/form-layout.component&#x27;;
+import { MessageResponse } from &#x27;../../../types/http/response/MessageResponse&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import {
+  RegisterService
+} from &#x27;../../../services/auth/register/register.service&#x27;;
+import { HttpErrorResponse, HttpStatusCode } from &#x27;@angular/common/http&#x27;;
+import { StringService } from &#x27;../../../services/utils/string.service&#x27;;
+
+/**
+ * Component for the user registration page.
+ * This component handles user registration by providing a form with fields for email, username, password, and confirm password.
+ * It uses the RegisterService to handle the registration logic and displays messages based on the success or failure of the registration.
+ * Used in Register Pages like [Candidate]{@link RegisterCandidatePage} and [Company]{@link RegisterCompanyPage} pages.
+ * @version 0.2
+ * @since 0.2
+ */
+@Component({
+  selector: &#x27;app-register-user-page&#x27;,
+  imports: [FieldComponent, FormLayoutComponent],
+  templateUrl: &#x27;./register-user-page.component.html&#x27;,
+  styles: &#x60;&#x60;,
+})
+export class RegisterUserPageComponent implements OnInit {
+  /**
+   * Field options for the email input.
+   * This includes the value, mode, and helper text.
+   * @since 0.2
+   * @protected
+   */
+  protected email: FieldOptions &#x3D; {
+    value: &#x27;&#x27;,
+    mode: &#x27;DEFAULT&#x27;,
+    helper: &#x27;&#x27;,
+  };
+  /**
+   * Field options for the username input.
+   * This includes the value, mode, and helper text.
+   * @since 0.2
+   * @protected
+   */
+  protected username: FieldOptions &#x3D; {
+    value: &#x27;&#x27;,
+    mode: &#x27;DEFAULT&#x27;,
+    helper: &#x27;&#x27;,
+  };
+  /**
+   * Field options for the password input.
+   * This includes the value, mode, and helper text.
+   * @since 0.2
+   * @protected
+   */
+  protected password: FieldOptions &#x3D; {
+    value: &#x27;&#x27;,
+    mode: &#x27;DEFAULT&#x27;,
+    helper: &#x27;&#x27;,
+  };
+  /**
+   * Field options for the Confirm Password input.
+   * This includes the value, mode, and helper text.
+   * @since 0.2
+   * @protected
+   */
+  protected confirmPassword: FieldOptions &#x3D; {
+    value: &#x27;&#x27;,
+    mode: &#x27;DEFAULT&#x27;,
+    helper: &#x27;&#x27;,
+  };
+  /**
+   * Form message options for displaying messages to the user.
+   * @since 0.2
+   * @protected
+   */
+  protected form: FormMessageOptions &#x3D; {
+    mode: &#x27;DEFAULT&#x27;,
+    message: &#x27;&#x27;,
+  };
+  /**
+   * Service for handling user registration.
+   * This service will emit Form Submission and handle the request response.
+   * @since 0.2
+   * @private
+   */
+  private registerService: RegisterService &#x3D; inject(RegisterService);
+  /**
+   * Router instance to navigate to different routes.
+   * @private
+   * @since 0.2
+   */
+  private router: Router &#x3D; inject(Router);
+
+  /**
+   * Title of the registration page.
+   * This is used to display the title in the form layout.
+   * @since 0.2
+   * @private
+   */
+  private _title: string &#x3D; &#x27;Register User&#x27;;
+
+  /**
+   * Title of the registration page.
+   * This is used to display the title in the form layout.
+   * @since 0.2
+   */
+  get title(): string {
+    return this._title;
+  }
+
+  /**
+   * Title of the registration page.
+   * This is used to display the title in the form layout.
+   * @since 0.2
+   */
+  @Input() set title(value: string) {
+    this._title &#x3D; value;
+  }
+
+  /**
+   * Method runed when the component is initialized.
+   * This method is used to set up event listeners for the registration service.
+   */
+  ngOnInit() {
+    this.registerService.error.subscribe((error: HttpErrorResponse) &#x3D;&gt; {
+      this.handleError(error);
+    });
+    this.registerService.success.subscribe((response: MessageResponse) &#x3D;&gt; {
+      this.handleSuccess(response);
+    });
+  }
+
+  /**
+   * Method to handle form submission.
+   * @since 0.2
+   */
+  submit() {
+    this.clearErrors();
+    if (this.fieldsAreInvalid()) {
+      return;
+    }
+    this.registerService.submit &#x3D; {
+      email: this.email.value,
+      username: this.username.value,
+      password: this.password.value,
+    };
+  }
+
+  /**
+   * Method to clear all error messages and reset field modes to default.
+   * This is useful when the form is submitted and needs to be reset.
+   * @since 0.2
+   */
+  clearErrors() {
+    this.email.mode &#x3D; &#x27;DEFAULT&#x27;;
+    this.email.helper &#x3D; &#x27;&#x27;;
+    this.username.mode &#x3D; &#x27;DEFAULT&#x27;;
+    this.username.helper &#x3D; &#x27;&#x27;;
+    this.password.mode &#x3D; &#x27;DEFAULT&#x27;;
+    this.password.helper &#x3D; &#x27;&#x27;;
+    this.confirmPassword.mode &#x3D; &#x27;DEFAULT&#x27;;
+    this.confirmPassword.helper &#x3D; &#x27;&#x27;;
+    this.form.mode &#x3D; &#x27;DEFAULT&#x27;;
+    this.form.message &#x3D; &#x27;&#x27;;
+  }
+
+  /**
+   * Method to navigate to the login page.
+   * @since 0.2
+   */
+  async navigateToLogin() {
+    await this.router.navigate([&#x27;/login&#x27;]);
+  }
+
+  /**
+   * Method to handle successful registration.
+   * This method will be called when the registration request is successful.
+   * ItSpec will update the form mode and message, and redirect the user to the login page after a delay.
+   * @since 0.2
+   * @param _response - The response from the registration request.
+   */
+  private handleSuccess(_response: MessageResponse) {
+    this.form.mode &#x3D; &#x27;SUCCESS&#x27;;
+    this.form.message &#x3D;
+      &#x27;Company registered successfully. Redirecting to Login page...&#x27;;
+    setTimeout(() &#x3D;&gt; this.navigateToLogin(), 3000);
+  }
+
+  /**
+   * Method to handle errors during registration.
+   * This method will be called when the registration request fails.
+   * ItSpec will update the form mode and message to indicate an error.
+   * @since 0.2
+   * @param error - The error object from the registration request.
+   */
+  private handleError(error: HttpErrorResponse) {
+    this.form.mode &#x3D; &#x27;DANGER&#x27;;
+    switch (error.status) {
+      case HttpStatusCode.Conflict:
+        let message: string &#x3D; error.error.message;
+        if (message.toLowerCase().includes(&#x27;email&#x27;)) {
+          this.email.mode &#x3D; &#x27;DANGER&#x27;;
+          this.email.helper &#x3D; &#x27;Email already exists.&#x27;;
+        } else if (message.toLowerCase().includes(&#x27;username&#x27;)) {
+          this.username.mode &#x3D; &#x27;DANGER&#x27;;
+          this.username.helper &#x3D; &#x27;Username already exists.&#x27;;
+        } else {
+          this.form.message &#x3D; message;
+        }
+        break;
+      case HttpStatusCode.InternalServerError:
+        this.form.message &#x3D;
+          &#x27;Internal server error. Please try again later or contact support.&#x27;;
+        break;
+      default:
+        this.form.message &#x3D; &#x27;An unexpected error occurred. Please try again.&#x27;;
+    }
+  }
+
+  /**
+   * Method to validate the form fields.
+   * This checks if all required fields are filled out correctly
+   * and sets appropriate error messages.
+   * This method uses regular expressions to validate the email and password formats.
+   * @since 0.2
+   * @returns {boolean} - Returns if any field is invalid, false otherwise.
+   * @example
+   * if (this.fieldsAreInvalid()) {
+   *   console.error(&#x27;Form fields are invalid&#x27;);
+   * }
+   * @private
+   */
+  private fieldsAreInvalid(): boolean {
+    let hasError &#x3D; false;
+    if (!this.email.value) {
+      this.email.mode &#x3D; &#x27;DANGER&#x27;;
+      this.email.helper &#x3D; &#x27;Email is required.&#x27;;
+      hasError &#x3D; true;
+    } else if (!StringService.isValidEmail(this.email.value)) {
+      this.email.mode &#x3D; &#x27;DANGER&#x27;;
+      this.email.helper &#x3D; &#x27;Invalid email format.&#x27;;
+      hasError &#x3D; true;
+    }
+    if (!this.username.value) {
+      this.username.mode &#x3D; &#x27;DANGER&#x27;;
+      this.username.helper &#x3D; &#x27;Username is required.&#x27;;
+      hasError &#x3D; true;
+    }
+    if (!this.password.value) {
+      this.password.mode &#x3D; &#x27;DANGER&#x27;;
+      this.password.helper &#x3D; &#x27;Password is required.&#x27;;
+      hasError &#x3D; true;
+    } else if (!StringService.isStrongerPassword(this.password.value)) {
+      this.password.mode &#x3D; &#x27;DANGER&#x27;;
+      this.password.helper &#x3D;
+        &#x27;Too weak password. Must contain at least 8 characters, one uppercase &#x27; +
+        &#x27;letter, one lowercase letter, one number, and one special character.&#x27;;
+      hasError &#x3D; true;
+    }
+    if (!this.confirmPassword.value) {
+      this.confirmPassword.mode &#x3D; &#x27;DANGER&#x27;;
+      this.confirmPassword.helper &#x3D; &#x27;Confirm Password is required.&#x27;;
+      hasError &#x3D; true;
+    } else if (this.confirmPassword.value !&#x3D;&#x3D; this.password.value) {
+      this.confirmPassword.mode &#x3D; &#x27;DANGER&#x27;;
+      this.confirmPassword.helper &#x3D; &#x27;Passwords do not match.&#x27;;
+      hasError &#x3D; true;
+    }
+    return hasError;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;app-form-layout
+  (primaryButtonClick)&#x3D;&quot;submit()&quot;
+  (secondaryButtonClick)&#x3D;&quot;navigateToLogin()&quot;
+  [message]&#x3D;&quot;form.message&quot;
+  [mode]&#x3D;&quot;form.mode&quot;
+  [title]&#x3D;&quot;title&quot;
+  primaryButtonText&#x3D;&quot;Register&quot;
+  secondaryButtonText&#x3D;&quot;Already registered? Log in&quot;
+&gt;
+  &lt;form class&#x3D;&quot;has-text-left&quot;&gt;
+    &lt;app-field
+      (fieldValueChanged)&#x3D;&quot;email.value &#x3D; $event&quot;
+      [fieldHelperText]&#x3D;&quot;email.helper&quot;
+      [fieldIconRight]&#x3D;&quot;email.mode &#x3D;&#x3D;&#x3D; &#x27;DANGER&#x27; ? &#x27;fa-exclamation-triangle&#x27; : &#x27;&#x27;&quot;
+      [fieldMode]&#x3D;&quot;email.mode&quot;
+      [required]&#x3D;&quot;true&quot;
+      fieldIconLeft&#x3D;&quot;fa-envelope&quot;
+      fieldLabel&#x3D;&quot;Business Email&quot;
+      fieldName&#x3D;&quot;email&quot;
+      fieldPlaceholder&#x3D;&quot;Your employment email&quot;
+      fieldType&#x3D;&quot;email&quot; /&gt;
+    &lt;app-field
+      (fieldValueChanged)&#x3D;&quot;username.value &#x3D; $event&quot;
+      [fieldHelperText]&#x3D;&quot;username.helper&quot;
+      [fieldIconRight]&#x3D;&quot;username.mode &#x3D;&#x3D;&#x3D; &#x27;DANGER&#x27; ? &#x27;fa-exclamation-triangle&#x27; : &#x27;&#x27;&quot;
+      [fieldMode]&#x3D;&quot;username.mode&quot;
+      [required]&#x3D;&quot;true&quot;
+      fieldIconLeft&#x3D;&quot;fa-user&quot;
+      fieldLabel&#x3D;&quot;Username&quot;
+      fieldName&#x3D;&quot;username&quot;
+      fieldPlaceholder&#x3D;&quot;An unique username to your employment&quot;
+      fieldType&#x3D;&quot;text&quot; /&gt;
+    &lt;app-field
+      (fieldValueChanged)&#x3D;&quot;password.value &#x3D; $event&quot;
+      [fieldHelperText]&#x3D;&quot;password.helper&quot;
+      [fieldIconRight]&#x3D;&quot;password.mode &#x3D;&#x3D;&#x3D; &#x27;DANGER&#x27; ? &#x27;fa-exclamation-triangle&#x27; : &#x27;&#x27;&quot;
+      [fieldMode]&#x3D;&quot;password.mode&quot;
+      [required]&#x3D;&quot;true&quot;
+      fieldIconLeft&#x3D;&quot;fa-key&quot;
+      fieldLabel&#x3D;&quot;Password&quot;
+      fieldName&#x3D;&quot;password&quot;
+      fieldPlaceholder&#x3D;&quot;******&quot;
+      fieldType&#x3D;&quot;password&quot; /&gt;
+    &lt;app-field
+      (fieldValueChanged)&#x3D;&quot;confirmPassword.value &#x3D; $event&quot;
+      [fieldHelperText]&#x3D;&quot;confirmPassword.helper&quot;
+      [fieldIconRight]&#x3D;&quot;confirmPassword.mode &#x3D;&#x3D;&#x3D; &#x27;DANGER&#x27; ? &#x27;fa-exclamation-triangle&#x27; : &#x27;&#x27;&quot;
+      [fieldMode]&#x3D;&quot;confirmPassword.mode&quot;
+      [required]&#x3D;&quot;true&quot;
+      fieldIconLeft&#x3D;&quot;fa-key&quot;
+      fieldLabel&#x3D;&quot;Confirm Password&quot;
+      fieldName&#x3D;&quot;confirm_password&quot;
+      fieldPlaceholder&#x3D;&quot;******&quot;
+      fieldType&#x3D;&quot;password&quot; /&gt;
+    &lt;hr&gt;
+    &lt;ng-content /&gt;
+  &lt;/form&gt;
+&lt;/app-form-layout&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+            <pre class="line-numbers"><code class="language-scss">
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><app-form-layout  (primaryButtonClick)="submit()"  (secondaryButtonClick)="navigateToLogin()"  [message]="form.message"  [mode]="form.mode"  [title]="title"  primaryButtonText="Register"  secondaryButtonText="Already registered? Log in">  <form class="has-text-left">    <app-field      (fieldValueChanged)="email.value = $event"      [fieldHelperText]="email.helper"      [fieldIconRight]="email.mode === \'DANGER\' ? \'fa-exclamation-triangle\' : \'\'"      [fieldMode]="email.mode"      [required]="true"      fieldIconLeft="fa-envelope"      fieldLabel="Business Email"      fieldName="email"      fieldPlaceholder="Your employment email"      fieldType="email" />    <app-field      (fieldValueChanged)="username.value = $event"      [fieldHelperText]="username.helper"      [fieldIconRight]="username.mode === \'DANGER\' ? \'fa-exclamation-triangle\' : \'\'"      [fieldMode]="username.mode"      [required]="true"      fieldIconLeft="fa-user"      fieldLabel="Username"      fieldName="username"      fieldPlaceholder="An unique username to your employment"      fieldType="text" />    <app-field      (fieldValueChanged)="password.value = $event"      [fieldHelperText]="password.helper"      [fieldIconRight]="password.mode === \'DANGER\' ? \'fa-exclamation-triangle\' : \'\'"      [fieldMode]="password.mode"      [required]="true"      fieldIconLeft="fa-key"      fieldLabel="Password"      fieldName="password"      fieldPlaceholder="******"      fieldType="password" />    <app-field      (fieldValueChanged)="confirmPassword.value = $event"      [fieldHelperText]="confirmPassword.helper"      [fieldIconRight]="confirmPassword.mode === \'DANGER\' ? \'fa-exclamation-triangle\' : \'\'"      [fieldMode]="confirmPassword.mode"      [required]="true"      fieldIconLeft="fa-key"      fieldLabel="Confirm Password"      fieldName="confirm_password"      fieldPlaceholder="******"      fieldType="password" />    <hr>    <ng-content />  </form></app-form-layout></div>'
+    var COMPONENTS = [{'name': 'App', 'selector': 'app-root'},{'name': 'BlankLayoutComponent', 'selector': 'app-blank-layout'},{'name': 'DefaultLayoutComponent', 'selector': 'app-default-layout'},{'name': 'FieldComponent', 'selector': 'app-field'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FormLayoutComponent', 'selector': 'app-form-layout'},{'name': 'HelloPage', 'selector': 'app-hello'},{'name': 'ImageCardButtonComponent', 'selector': 'app-image-card-button'},{'name': 'LoginPage', 'selector': 'app-login-page'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'RegisterCandidatePage', 'selector': 'app-candidate-page'},{'name': 'RegisterChoicePage', 'selector': 'app-register-choice-page'},{'name': 'RegisterCompanyPage', 'selector': 'app-register-company-page'},{'name': 'RegisterUserPageComponent', 'selector': 'app-register-user-page'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'RegisterUserPageComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'RegisterUserPageComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

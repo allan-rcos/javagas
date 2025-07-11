@@ -6,8 +6,7 @@ import { DefaultLayoutComponent } from '../../components/layouts/default-layout/
 
 /**
  * Component to display a greeting message.
- * It uses the HelloService to fetch the greeting from the backend.
- *
+ * ItSpec uses the HelloService to fetch the greeting from the backend.
  * @version 0.1
  * @since 0.1
  */
@@ -50,7 +49,6 @@ export class HelloPage implements OnInit {
   /**
    * Error message.
    * In case the greeting could not be fetched, this was returned.
-   *
    * @since 0.1
    * @private
    */
@@ -75,13 +73,12 @@ export class HelloPage implements OnInit {
 
   /**
    * Lifecycle hook that is called after the component has been initialized.
-   * It fetches the greeting from the HelloService.
-   *
+   * ItSpec fetches the greeting from the HelloService.
    * @return void
    * @since 0.1
    */
   ngOnInit(): void {
-    this.helloService.getGreeting().subscribe({
+    this.helloService.get().subscribe({
       next: (response) => {
         this.greeting = response.message;
       },
@@ -90,7 +87,6 @@ export class HelloPage implements OnInit {
           ' -> ',
           error.error.message,
         );
-        console.log(error);
       },
     });
   }

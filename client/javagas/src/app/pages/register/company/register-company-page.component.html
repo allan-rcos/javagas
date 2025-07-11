@@ -1,0 +1,41 @@
+<app-register-user-page title="Register your Company">
+  <app-field
+    (fieldValueChanged)="fullName.value = $event"
+    [fieldHelperText]="fullName.helper"
+    [fieldIconRight]="fullName.mode === 'DANGER' ? 'fa-exclamation-triangle' : ''"
+    [fieldMode]="fullName.mode"
+    [required]="true"
+    fieldIconLeft="fa-address-card"
+    fieldLabel="Company Name"
+    fieldName="name"
+    fieldPlaceholder="Company full name"
+    fieldType="text" />
+  <app-field
+    (fieldValueChanged)="websiteUrl.value = $event"
+    [fieldHelperText]="websiteUrl.helper"
+    [fieldIconRight]="websiteUrl.mode === 'DANGER' ? 'fa-exclamation-triangle' : ''"
+    [fieldMode]="websiteUrl.mode"
+    fieldIconLeft="fa-globe"
+    fieldLabel="Website URL"
+    fieldName="website_url"
+    fieldPlaceholder="A link to your company website."
+    fieldType="url" />
+  <app-field
+    (fieldValueChanged)="industry.value = $event"
+    [fieldHelperText]="industry.helper"
+    [fieldMode]="industry.mode"
+    [options]="getIndustryOptions()"
+    [required]="true"
+    fieldLabel="Business Industry"
+    fieldName="industry"
+    fieldPlaceholder="Select one Industry type for your company"
+    fieldType="select" />
+  <app-field
+    (fieldValueChanged)="description.value = $event"
+    [fieldHelperText]="description.helper"
+    [fieldMode]="description.mode"
+    fieldLabel="Description"
+    fieldName="description"
+    fieldPlaceholder="A short description about your company."
+    fieldType="textarea" />
+</app-register-user-page>

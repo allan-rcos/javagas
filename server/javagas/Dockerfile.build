@@ -1,0 +1,15 @@
+## Stage 1 - Build ##
+FROM maven:3.9.10-amazoncorretto-21-al2023 AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+## Stage 2 - Run ##
+FROM gcr.io/distroless/java21-debian12
+LABEL authors="Állan"
+
+EXPOSE 8080
+COPY --from=build /app/target/javagas-server.jar javagas-server.jar
+
+ENTRYPOINT ["java", "-jar", "/javagas-server.jar"]

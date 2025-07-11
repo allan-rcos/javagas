@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW (Versão OEM) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="210mm" height="297mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 21000 29700"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:#363636;stroke-width:100;stroke-miterlimit:22.9256;stroke-opacity:0.050980}
+    .fil4 {fill:none}
+    .fil1 {fill:#00D1B2}
+    .fil3 {fill:#363636}
+    .fil2 {fill:#FFDD57}
+    .fil0 {fill:#363636;fill-opacity:0.050980}
+   ]]>
+  </style>
+ </defs>
+ <g id="Camada_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <polygon class="fil0" points="3880.84,20495.89 3880.84,12597.55 10781.86,15291.14 10781.86,18407.58 11973.73,18411.29 12544.41,10866.25 13954.43,10866.25 14689.47,18411.29 15348.77,18411.8 15842.15,18927.62 15842.15,20495.88 "/>
+  <path class="fil1" d="M10781.86 20495.89l-1983.18 0 0 -1752.6c0,-81.76 -67.05,-149.04 -149.04,-149.04l-2636.6 0c-81.97,0 -149.01,67.05 -149.01,149.04l0 1752.6 -1983.19 0 0 -7898.34 6901.02 2693.59 0 5204.75zm-1140.62 -4614.39l-1749.61 -596.93 0 1658.91 1749.61 0.01 0 -1061.98 0 -0.01zm-2870.17 -979.27l-1749.61 -596.95 0 2638.21 1749.61 0 0 -2041.26zm4165.07 3509.06l4389.65 0c284,0 516.36,232.73 516.36,516.33l0 1568.26 -4906.01 0.01 0 -2084.6z"/>
+  <path class="fil2" d="M12127.06 16458.16l-91.15 1176.36 2566.61 0.01 -116.18 -1176.36 -2359.28 -0.01zm208.67 -2693.11l-91.15 1176.36 2091.98 0 -116.18 -1176.36 -1884.65 0zm208.68 -2898.8l-91.12 1382.05 1617.32 0 -116.18 -1382.05 -1410.02 0z"/>
+  <g>
+   <path class="fil3" d="M13167.79 10666.33c1171.79,-1792.13 3254.17,1069.55 4105.54,-1616.47 -439.05,301.49 -757.29,488.98 -1161.1,586.95 -1030.29,249.98 -2822.55,-707.07 -2944.44,1029.52z"/>
+   <path id="_1" class="fil4 str0" d="M13167.79 10666.33c1171.79,-1792.13 3254.17,1069.55 4105.54,-1616.47 -439.05,301.49 -757.29,488.98 -1161.1,586.95 -1030.29,249.98 -2822.55,-707.07 -2944.44,1029.52z"/>
+  </g>
+ </g>
+</svg>

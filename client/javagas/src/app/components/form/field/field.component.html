@@ -1,0 +1,60 @@
+<div class="field">
+  <label class="label" for="{{fieldName}}">{{ fieldLabel }} @if (required) {
+    <span class="has-text-danger">*</span>
+  }</label>
+  <div [ngClass]="{'has-icons-left': !!fieldIconLeft,
+                 'has-icons-right': !!fieldIconRight}"
+       class="control">
+    @if (fieldType === 'textarea') {
+      <textarea (change)="emitValue($event)"
+                [ngClass]="ngClass"
+                autocomplete="off"
+                [required]="required"
+                class="textarea"
+                name="{{fieldName}}"
+                placeholder="{{fieldPlaceholder}}"
+      >{{ fieldValue }}</textarea>
+    } @else if (fieldType === 'select') {
+      <div class="select is-fullwidth"
+           [ngClass]="ngClass">
+        <select (change)="emitValue($event)"
+                [ngModel]="fieldValue || ' '"
+                name="{{fieldName}}"
+                [required]="required">
+          @for (option of options; track options.values()) {
+            <option [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+      </div>
+    } @else if (fieldType === 'custom') {
+      <ng-content />
+    } @else {
+      <input (change)="emitValue($event)"
+             [ngClass]="ngClass"
+             [value]="fieldValue"
+             [required]="required"
+             autocomplete="{{fieldType === 'email' ? 'email'
+             : fieldType === 'password' ? 'current-password'
+             : 'off'}}"
+             class="input"
+             name="{{fieldName}}"
+             placeholder="{{fieldPlaceholder}}"
+             type="{{fieldType}}"
+      >
+    }
+
+    @if (fieldIconLeft) {
+      <span class="icon is-small is-left">
+        <i class="fas" [ngClass]="fieldIconLeft"></i>
+      </span>
+    }
+    @if (fieldIconRight) {
+      <span class="icon is-small is-right">
+        <i class="fas" [ngClass]="fieldIconRight"></i>
+      </span>
+    }
+  </div>
+  <p [ngClass]="ngClass"
+     class="help">
+    {{ fieldHelperText }}</p>
+</div>

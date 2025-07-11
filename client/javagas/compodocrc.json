@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/@compodoc/compodoc/src/config/schema.json",
+  "tsconfig": "./tsconfig.doc.json",
+  "output": "docs",
+  "name": "JaVagas",
+  "customFavicon": "./public/favicon.ico",
+  "customLogo": "./public/images/logo.png",
+  "port": 8082,
+  "hideGenerator": true,
+  "disablePrivate": true,
+  "disableProtected": true,
+  "disableInternal": true
+}

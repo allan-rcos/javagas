@@ -196,15 +196,15 @@ class AuthIT {
      * A Test to Register a Candidate User that Already Exists.
      * <p>
      * This test will check if the method `registerCandidate` returns
-     * a Bad Request response when the user already exists in the database.
+     * a Conflict response when the user already exists in the database.
      * </p>
      *
      * @since 0.2
      */
     @Test
     @DisplayName("Register Candidate that Already Exists (Username) will return"
-            + " Bad Request")
-    void registerCandidateWithUsernameThatExistsWillReturnBadRequest() {
+            + " Conflict")
+    void registerCandidateWithUsernameThatExistsWillReturnConflict() {
         userRepo.save(User.builder()
                 .username(candidateDTO.getUsername())
                 .password(passwordEncoder.encode(candidateDTO.getPassword()))
@@ -220,13 +220,13 @@ class AuthIT {
         Assertions.assertNotNull(response,
                 "Response should not be null");
         Assertions.assertEquals(
-                HttpStatus.BAD_REQUEST, response.getStatusCode(),
-                "Status code should be BAD_REQUEST");
+                HttpStatus.CONFLICT, response.getStatusCode(),
+                "Status code should be CONFLICT: " + body.toString());
         Assertions.assertNotNull(body,
                 "Response body should not be null");
         Assertions.assertTrue(
                 body.getMessage().toLowerCase().contains("username"),
-                "Response body should contain 'websiteUrl' key "
+                "Response body should contain 'username' key "
                         + "Because it is invalid");
         Assertions.assertFalse(userRepo.existsByEmail(candidateDTO.getEmail()),
                 "User should not be created in the database");
@@ -236,15 +236,15 @@ class AuthIT {
      * A Test to Register a Candidate User that Already Exists.
      * <p>
      * This test will check if the method `registerCandidate` returns
-     * a Bad Request response when the user already exists in the database.
+     * a Conflict response when the user already exists in the database.
      * </p>
      *
      * @since 0.2
      */
     @Test
     @DisplayName("Register Candidate that Already Exists (Email) will return "
-            + "Bad Request")
-    void registerCandidateWithEmailThatExistsWillReturnBadRequest() {
+            + "Conflict")
+    void registerCandidateWithEmailThatExistsWillReturnConflict() {
         userRepo.save(User.builder()
                 .username("2" + candidateDTO.getUsername()) // Ensure unique
                 .password(passwordEncoder.encode(candidateDTO.getPassword()))
@@ -260,13 +260,13 @@ class AuthIT {
         Assertions.assertNotNull(response,
                 "Response should not be null");
         Assertions.assertEquals(
-                HttpStatus.BAD_REQUEST, response.getStatusCode(),
-                "Status code should be BAD_REQUEST");
+                HttpStatus.CONFLICT, response.getStatusCode(),
+                "Status code should be CONFLICT: " + body.toString());
         Assertions.assertNotNull(body,
                 "Response body should not be null");
         Assertions.assertTrue(
                 body.getMessage().toLowerCase().contains("email"),
-                "Response body should contain 'websiteUrl' key "
+                "Response body should contain 'email' key "
                         + "Because it is invalid");
         Assertions.assertFalse(
                 userRepo.existsByUsername(candidateDTO.getUsername()),
@@ -356,7 +356,7 @@ class AuthIT {
                 "Response should not be null");
         Assertions.assertEquals(
                 HttpStatus.BAD_REQUEST, response.getStatusCode(),
-                "Status code should be BAD_REQUEST");
+                "Status code should be BAD_REQUEST: " + body.toString());
         Assertions.assertNotNull(body,
                 "Response body should not be null");
         Assertions.assertTrue(body.containsKey("websiteUrl"),
@@ -380,15 +380,15 @@ class AuthIT {
      * A Test to Register a Company User that Already Exists.
      * <p>
      * This test will check if the method `registerCompany` returns
-     * a Bad Request response when the user already exists in the database.
+     * a Conflict response when the user already exists in the database.
      * </p>
      *
      * @since 0.2
      */
     @Test
     @DisplayName("Register Company that Already Exists (Username) will return "
-            + "Bad Request")
-    void registerCompanyWithUsernameThatExistsWillReturnBadRequest() {
+            + "Conflict")
+    void registerCompanyWithUsernameThatExistsWillReturnConflict() {
         userRepo.save(User.builder()
                 .username(companyDTO.getUsername())
                 .password(passwordEncoder.encode(companyDTO.getPassword()))
@@ -404,13 +404,13 @@ class AuthIT {
         Assertions.assertNotNull(response,
                 "Response should not be null");
         Assertions.assertEquals(
-                HttpStatus.BAD_REQUEST, response.getStatusCode(),
-                "Status code should be BAD_REQUEST");
+                HttpStatus.CONFLICT, response.getStatusCode(),
+                "Status code should be CONFLICT: " + body.toString());
         Assertions.assertNotNull(body,
                 "Response body should not be null");
         Assertions.assertTrue(
                 body.getMessage().toLowerCase().contains("username"),
-                "Response body should contain 'websiteUrl' key "
+                "Response body should contain 'username' key "
                         + "Because it is invalid");
         Assertions.assertFalse(userRepo.existsByEmail(companyDTO.getEmail()),
                 "User should not be created in the database");
@@ -420,15 +420,15 @@ class AuthIT {
      * A Test to Register a Company User that Already Exists.
      * <p>
      * This test will check if the method `registerCompany` returns
-     * a Bad Request response when the user already exists in the database.
+     * a Conflict response when the user already exists in the database.
      * </p>
      *
      * @since 0.2
      */
     @Test
     @DisplayName("Register Company that Already Exists (Email) will return "
-            + "Bad Request")
-    void registerCompanyWithEmailThatExistsWillReturnBadRequest() {
+            + "Conflict")
+    void registerCompanyWithEmailThatExistsWillReturnConflict() {
         userRepo.save(User.builder()
                 .username("2" + companyDTO.getUsername()) // Ensure unique user
                 .password(passwordEncoder.encode(companyDTO.getPassword()))
@@ -444,13 +444,13 @@ class AuthIT {
         Assertions.assertNotNull(response,
                 "Response should not be null");
         Assertions.assertEquals(
-                HttpStatus.BAD_REQUEST, response.getStatusCode(),
-                "Status code should be BAD_REQUEST");
+                HttpStatus.CONFLICT, response.getStatusCode(),
+                "Status code should be CONFLICT: " + body.toString());
         Assertions.assertNotNull(body,
                 "Response body should not be null");
         Assertions.assertTrue(
                 body.getMessage().toLowerCase().contains("email"),
-                "Response body should contain 'websiteUrl' key "
+                "Response body should contain 'email' key "
                         + "Because it is invalid");
         Assertions.assertFalse(
                 userRepo.existsByUsername(companyDTO.getUsername()),

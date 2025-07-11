@@ -1,0 +1,58 @@
+<app-form-layout
+  (primaryButtonClick)="submit()"
+  (secondaryButtonClick)="navigateToLogin()"
+  [message]="form.message"
+  [mode]="form.mode"
+  [title]="title"
+  primaryButtonText="Register"
+  secondaryButtonText="Already registered? Log in"
+>
+  <form class="has-text-left">
+    <app-field
+      (fieldValueChanged)="email.value = $event"
+      [fieldHelperText]="email.helper"
+      [fieldIconRight]="email.mode === 'DANGER' ? 'fa-exclamation-triangle' : ''"
+      [fieldMode]="email.mode"
+      [required]="true"
+      fieldIconLeft="fa-envelope"
+      fieldLabel="Business Email"
+      fieldName="email"
+      fieldPlaceholder="Your employment email"
+      fieldType="email" />
+    <app-field
+      (fieldValueChanged)="username.value = $event"
+      [fieldHelperText]="username.helper"
+      [fieldIconRight]="username.mode === 'DANGER' ? 'fa-exclamation-triangle' : ''"
+      [fieldMode]="username.mode"
+      [required]="true"
+      fieldIconLeft="fa-user"
+      fieldLabel="Username"
+      fieldName="username"
+      fieldPlaceholder="An unique username to your employment"
+      fieldType="text" />
+    <app-field
+      (fieldValueChanged)="password.value = $event"
+      [fieldHelperText]="password.helper"
+      [fieldIconRight]="password.mode === 'DANGER' ? 'fa-exclamation-triangle' : ''"
+      [fieldMode]="password.mode"
+      [required]="true"
+      fieldIconLeft="fa-key"
+      fieldLabel="Password"
+      fieldName="password"
+      fieldPlaceholder="******"
+      fieldType="password" />
+    <app-field
+      (fieldValueChanged)="confirmPassword.value = $event"
+      [fieldHelperText]="confirmPassword.helper"
+      [fieldIconRight]="confirmPassword.mode === 'DANGER' ? 'fa-exclamation-triangle' : ''"
+      [fieldMode]="confirmPassword.mode"
+      [required]="true"
+      fieldIconLeft="fa-key"
+      fieldLabel="Confirm Password"
+      fieldName="confirm_password"
+      fieldPlaceholder="******"
+      fieldType="password" />
+    <hr>
+    <ng-content />
+  </form>
+</app-form-layout>

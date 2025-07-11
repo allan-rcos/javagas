@@ -1,0 +1,30 @@
+<app-form-layout (primaryButtonClick)="submit()"
+                 (secondaryButtonClick)="navigateToRegister()"
+                 [message]="form.message"
+                 [mode]="form.mode"
+                 primaryButtonText="Log in into account"
+                 secondaryButtonText="Register new account"
+                 title="Login">
+  <form class="has-text-left">
+    <app-field
+      (fieldValueChanged)="username.value = $event"
+      [fieldHelperText]="username.helper"
+      [fieldIconRight]="username.mode === 'DANGER' ? 'fa-exclamation-triangle' : ''"
+      [fieldMode]="username.mode"
+      fieldIconLeft="fa-user"
+      fieldLabel="Username"
+      fieldName="username"
+      fieldPlaceholder="Your unique Username"
+      fieldType="text" />
+    <app-field
+      (fieldValueChanged)="password.value = $event"
+      [fieldHelperText]="password.helper"
+      [fieldIconRight]="password.mode === 'DANGER' ? 'fa-exclamation-triangle' : ''"
+      [fieldMode]="password.mode"
+      fieldIconLeft="fa-key"
+      fieldLabel="Password"
+      fieldName="password"
+      fieldPlaceholder="******"
+      fieldType="password" />
+  </form>
+</app-form-layout>

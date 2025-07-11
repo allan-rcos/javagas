@@ -1,0 +1,26 @@
+<app-blank-layout>
+  @if (message) {
+    <div class="notification mx-auto" [ngClass]="ngClass" style="width: 32rem;">
+      <button class="delete" (click)="message = ''"></button>
+      {{ message }}
+    </div>
+  }
+
+  <div class="section box mx-auto" style="width: 32rem;">
+    <h2 class=" title">{{ title }}</h2>
+    <ng-content />
+    <button
+      (click)="primaryButtonClick.emit($event)"
+      class="button is-primary has-text-white is-fullwidth mt-5"
+      type="submit">
+      {{ primaryButtonText }}
+    </button>
+    <hr>
+    <button
+      (click)="secondaryButtonClick.emit($event)"
+      class="button is-light is-fullwidth"
+      type="button">
+      {{ secondaryButtonText }}
+    </button>
+  </div>
+</app-blank-layout>
